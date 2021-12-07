@@ -207,8 +207,8 @@ hr {
 
 #headerwrap_r_a {
   background: url(./madre.jpg) no-repeat center top;
-  margin-top: 10px;
-  padding-top: 20px;
+  margin-top: 0px;
+  padding-top: 80px;
   text-align: letf;
   background-attachment: relative;
   background-position: center center;
@@ -227,11 +227,11 @@ hr {
 #headerwrap_r_n {
   background: url(./niños.png) no-repeat center top;
   margin-top: 10px;
-  padding-top: 20px;
+  padding-top: 120px;
   text-align: letf;
   background-attachment: relative;
   background-position: center center;
-  min-height: 800px;
+  min-height: 700px;
   width: 100%;
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
@@ -243,6 +243,24 @@ hr {
   background-size: cover;
 }
 
+#headerwrap_e {
+  background: url(https://s3-alpha-sig.figma.com/img/7769/df89/69ecb66ac93274b762e9141fef1de201?Expires=1639958400&Signature=GFbc1moXV9WWy0-7u3GHNxG9gS9J22oJawVEV7DDhRTRg31Iykwu8v8XvGAa-duXy8AliJ9cSXdI7MWe1piIy3y0oweyaFK5whXkaAwCicNokRF14JMRaWoj85Tu~0lYl95YBDqJvzlCTOc8lz~9TNRnbkuMw0ITCfKh9L-vXvGn-cHti4ZSR7lW7gveY9VLj-obWbaHobtOrQWPZwiL1Q1ckzChjamVdu9JyHv-lwH0se52uuzSTnvt6xx2kqVKs4me-3l4HqhB~Cc0IPuBFDWvnypqVITiiNQludZWvuyqIJWpS1kI7cWUon1DBuwEULLppHpKlfVHOOcLQ2cwTg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA) no-repeat center top;
+  margin-top: 0px;
+  padding-top: 80px;
+  text-align: letf;
+  background-attachment: relative;
+  background-position: center center;
+  min-height: 600px;
+  width: 100%;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
 /* Dark Grey Wrap */
 

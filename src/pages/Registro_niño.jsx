@@ -33,18 +33,43 @@ export const Registro_niño = () => {
           </div>
           <div className="navbar-collapse collapse">
             <ul className="nav navbar-nav navbar-right">
-            <li className="active"><Link to='/'> CANCELAR </Link></li>
+            <li className="active"><Link to='/registro-adulto'> REGISTRARSE </Link></li>
+            <li className="active"><Link to='/about'> ACCEDER </Link></li>
             <li><Link data-toggle="modal" data-target="#myModal" to="#myModal"><i className="fa fa-envelope-o"></i></Link></li>
             </ul>
           </div>
           {/* .nav-collapse --> */} 
         </div>
       </div>
-      <div id="headerwrap_r_n">
+      <div id="headerwrap_r_a">
         <div className="container">
           <div className="row centered">
-            <div className="col-lg-6">
-              <h1>Formulario registro niño ....  </h1>
+            <div className="col-lg-12">
+            <br/>
+                <form action="">
+                  <label for="">Nombre</label>
+                  <input type="text" />
+                  <label for="">Apellido</label>
+                  <input type="text" />
+                  <label for="">Nacimiento</label>
+                  <input type="text" />
+                  <label for="">Genero</label>
+                  <input type="text" />
+                  <label for="">Numero de documento</label>
+                  <input type="number" />
+                  <label for="">Dirección</label>
+                  <input type="text" />
+                  <label for="">Correo Electronico</label>
+                  <input type="text" />
+                  <label for="">Celular</label>
+                  <input type="text" />
+                  <br/>
+                  <label for="">Clave</label>
+                  <input type="text" />
+
+                  <button>Anterior</button>
+                  <button>Siguiente</button>
+        </form>
             </div>
           </div>
         {/* <!-- row --> */} 

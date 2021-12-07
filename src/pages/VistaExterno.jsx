@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react'
+import React, { Fragment} from 'react'
 import {Link} from 'react-router-dom'
 
-export const Header = () => {
+export const VistaExterno = () => {
   return (
     <Fragment>
       <nav className="navbar navbar-default" >
@@ -33,24 +33,18 @@ export const Header = () => {
           </div>
           <div className="navbar-collapse collapse">
             <ul className="nav navbar-nav navbar-right">
-            <li className="active"><Link to='/registro-adulto'> REGISTRARSE </Link></li>
-            <li className="active"><Link to='/about'> ACCEDER </Link></li>
-            <img src="nombre.png" alt=""/>
+            <li className="active"><Link to='/registro-niño'> DATOS PERSONALES DEL NIÑO </Link></li>
             <li><Link data-toggle="modal" data-target="#myModal" to="#myModal"><i className="fa fa-envelope-o"></i></Link></li>
             </ul>
           </div>
           {/* .nav-collapse --> */} 
         </div>
       </div>
-
-      <div id="headerwrap">
+      <div id="headerwrap_e">
         <div className="container">
           <div className="row centered">
-          <img src="header-bg.jpg" alt=""/>
-            <div className="col-lg-6">
-              <h1><b>45 años</b> trabajando por la comunidad Colombiana</h1>
-              <br/><br/>
-              <h2><b>"Por un mejor mañana para toda la Comunidad"</b></h2>
+            <div className="col-lg-7">
+          
             </div>
           </div>
         {/* <!-- row --> */} 
@@ -58,7 +52,6 @@ export const Header = () => {
       {/* <!-- container --> */} 
       </div>
       {/*  <!-- headerwrap --> */} 
-
 
       {/* {/*  <!-- FOOTER --> */} 
       <div id="f">
