@@ -206,8 +206,8 @@ export const CrearUsuarioInterno = () => {
 					tipo="text"
 					label="Fecha de nacimiento"
 					placeholder=""
-					name="Fechan"
-					leyendaError="La Fechan solo puede contener letras y espacios."
+					name="fechan"
+					leyendaError="El valor debe corresponder a una fecha."
 					expresionRegular={expresiones.fechan}
 				/>
         <Input
