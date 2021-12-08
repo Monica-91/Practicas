@@ -10,7 +10,7 @@ import {
   Link,
 } from "react-router-dom";
 import { UsuarioseList } from "./pages/Vistas_externo/UsuarioseList";
-
+import { UsuariosiList } from "./pages/Vista_Administrador/UsuariosiList";
 import { Header } from "./pages/Home";
 import {
   CrearUsuarioInterno,
@@ -72,6 +72,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/lista" element={<UsuarioseList />} />
+          <Route path="/listai" element={<UsuariosiList />} />
         </Routes>
       </Router>
     </div>
