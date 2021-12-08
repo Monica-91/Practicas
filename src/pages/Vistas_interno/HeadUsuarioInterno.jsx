@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 
-export const Head = () => {
+export const HeadUsuarioInterno = () => {
   return (
     <Fragment>
       <nav className="navbar navbar-default">
@@ -62,10 +62,13 @@ export const Head = () => {
           <div className="navbar-collapse collapse">
             <ul className="nav navbar-nav navbar-right">
               <li className="active">
-                <Link to="/registro-adulto"> REGISTRARSE </Link>
+                <Link to="/inventario_vacuna"> Vacunas </Link>
               </li>
               <li className="active">
-                <Link to="/login"> ACCEDER </Link>
+                <Link to="/buscarUsuario"> Buscar Usuario </Link>
+              </li>
+              <li className="active">
+                <Link to="/buscarUsuario"> Algo </Link>
               </li>
               <img src="nombre.png" alt="" />
               <li>
