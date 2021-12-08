@@ -34,7 +34,8 @@ export const Login = () => {
                 <div className="navbar-collapse collapse">
                     <ul className="nav navbar-nav navbar-right">
                     <li className="active"><Link to='/'> HOME </Link></li>
-                    <li className="active"><Link to='/externo'> Vista Externo </Link></li>
+                    <li className="active"><Link to='/registro-adulto'> REGISTRARSE </Link></li>
+                    
                     <li><Link data-toggle="modal" data-target="#myModal" to="#myModal"><i className="fa fa-envelope-o"></i></Link></li>
                     </ul>
                 </div>
