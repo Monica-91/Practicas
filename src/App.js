@@ -9,6 +9,7 @@ import {
   Route,
   Link,
 } from "react-router-dom";
+import { UsuarioseList } from "./pages/UsuarioseList";
 
 import { Header } from "./pages/Home";
 import { Navbar } from "./pages/CrearUsuarioInterno";
@@ -46,6 +47,12 @@ function App() {
 
           <Route path="/services" element={<Services />} />
           <Route path="/works" element={<Works />} />
+
+          <Route path="/" element={<Home />} />
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/externo" element={<VistaExterno />} />
+          <Route path="/lista" element={<UsuarioseList />} />
         </Routes>
       </Router>
     </div>

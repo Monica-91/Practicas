@@ -57,7 +57,12 @@ body {
 
 /* Titles */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Raleway";
   font-weight: 300;
   color: #333;
@@ -82,13 +87,15 @@ a {
   transition: color 0.1s ease-in, background 0.1s ease-in;
 }
 
-a:hover, a:focus {
+a:hover,
+a:focus {
   color: white;
   text-decoration: none;
   outline: 0;
 }
 
-a:before, a:after {
+a:before,
+a:after {
   transition: color 0.1s ease-in, background 0.1s ease-in;
 }
 
@@ -109,31 +116,30 @@ hr {
 }
 
 .navbar-inverse {
-  background: #00B2A9;
-  border-color: #00B2A9;
+  background: #00b2a9;
+  border-color: #00b2a9;
 }
 
-.navbar-inverse .navbar-nav>.active>a {
-  background: #00B2A9;
+.navbar-inverse .navbar-nav > .active > a {
+  background: #00b2a9;
 }
 
 .navbar-inverse .navbar-brand {
-  color: #00B2A9;
+  color: #00b2a9;
   font-weight: bolder;
   font-size: 1px;
   letter-spacing: 1px;
 }
 
 .navbar-inverse .navbar-brand i {
-  color: #00B2A9;
+  color: #00b2a9;
   font-size: 1px;
   letter-spacing: 1px;
 }
 
-.navbar-default{
-  color:#E03E52;
-  background: #FFFFFF;
-
+.navbar-default {
+  color: #e03e52;
+  background: #ffffff;
 }
 
 /*TILT*/
@@ -195,7 +201,7 @@ hr {
   text-transform: uppercase;
 }
 
-@media (max-width: 768px ) {
+@media (max-width: 768px) {
   #headerwrap h1 {
     font-size: 50px;
   }
@@ -244,12 +250,13 @@ hr {
 }
 
 #headerwrap_e {
-  background: url(https://s3-alpha-sig.figma.com/img/7769/df89/69ecb66ac93274b762e9141fef1de201?Expires=1639958400&Signature=GFbc1moXV9WWy0-7u3GHNxG9gS9J22oJawVEV7DDhRTRg31Iykwu8v8XvGAa-duXy8AliJ9cSXdI7MWe1piIy3y0oweyaFK5whXkaAwCicNokRF14JMRaWoj85Tu~0lYl95YBDqJvzlCTOc8lz~9TNRnbkuMw0ITCfKh9L-vXvGn-cHti4ZSR7lW7gveY9VLj-obWbaHobtOrQWPZwiL1Q1ckzChjamVdu9JyHv-lwH0se52uuzSTnvt6xx2kqVKs4me-3l4HqhB~Cc0IPuBFDWvnypqVITiiNQludZWvuyqIJWpS1kI7cWUon1DBuwEULLppHpKlfVHOOcLQ2cwTg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA) no-repeat center top;
+  background: url(https://s3-alpha-sig.figma.com/img/7769/df89/69ecb66ac93274b762e9141fef1de201?Expires=1639958400&Signature=GFbc1moXV9WWy0-7u3GHNxG9gS9J22oJawVEV7DDhRTRg31Iykwu8v8XvGAa-duXy8AliJ9cSXdI7MWe1piIy3y0oweyaFK5whXkaAwCicNokRF14JMRaWoj85Tu~0lYl95YBDqJvzlCTOc8lz~9TNRnbkuMw0ITCfKh9L-vXvGn-cHti4ZSR7lW7gveY9VLj-obWbaHobtOrQWPZwiL1Q1ckzChjamVdu9JyHv-lwH0se52uuzSTnvt6xx2kqVKs4me-3l4HqhB~Cc0IPuBFDWvnypqVITiiNQludZWvuyqIJWpS1kI7cWUon1DBuwEULLppHpKlfVHOOcLQ2cwTg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)
+    no-repeat center top;
   margin-top: 0px;
-  padding-top: 80px;
-  text-align: letf;
+  padding-top: 500px;
+  text-align: rigth;
   background-attachment: relative;
-  background-position: center center;
+  background-position: center rigth;
   min-height: 600px;
   width: 100%;
   -webkit-background-size: 100%;
@@ -291,7 +298,7 @@ hr {
 /* Red Wrap */
 
 #r {
-  background: #00B2A9;
+  background: #00b2a9;
   padding-top: 35px;
   padding-bottom: 35px;
 }
@@ -337,7 +344,7 @@ hr {
 }
 
 #f i:hover {
-  color: #00B2A9;
+  color: #00b2a9;
 }
 
 /****** SECTIONS *****/
@@ -351,7 +358,7 @@ hr {
 }
 
 .w i {
-  color: #00B2A9;
+  color: #00b2a9;
   font-size: 30px;
 }
 
@@ -373,7 +380,7 @@ hr {
 }
 
 .desc i {
-  color: #00B2A9;
+  color: #00b2a9;
   font-size: 12px;
   padding: 5px;
 }
@@ -440,7 +447,7 @@ hr {
 }
 
 .special .pricing-top {
-  background: #E03E52;
+  background: #e03e52;
 }
 
 .pricing-option .pricing-edition {
@@ -498,7 +505,7 @@ hr {
 }
 
 .pricing-option .pricing-signup:hover {
-  background: #00B2A9;
+  background: #00b2a9;
 }
 
 /* Contact Form */
@@ -509,10 +516,11 @@ hr {
 }
 
 .contact-form label {
-   color: white;
+  color: white;
 }
 
-.contact-form input, .contact-form textarea {
+.contact-form input,
+.contact-form textarea {
   padding: 10px 12px;
   border-radius: 0;
   box-shadow: none;
@@ -524,8 +532,8 @@ hr {
   text-align: center;
 }
 
-.contact-form .form-send button  {
-  background: #00B2A9;
+.contact-form .form-send button {
+  background: #00b2a9;
   border: 0;
   padding: 10px 30px;
   color: #fff;
@@ -534,7 +542,7 @@ hr {
 }
 
 .contact-form .form-send button:hover {
-  background: #00B2A9;
+  background: #00b2a9;
 }
 
 .contact-form .validate {
@@ -613,7 +621,7 @@ hr {
 /* Copyrights */
 
 #copyrights {
-  background: #00B2A9;
+  background: #00b2a9;
   padding: 20px 0;
   text-align: center;
   color: #fff;

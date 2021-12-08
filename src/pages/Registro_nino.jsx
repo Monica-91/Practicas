@@ -1,7 +1,7 @@
 import React, { Fragment} from 'react'
 import {Link} from 'react-router-dom'
 
-export const VistaExterno = () => {
+export const Registro_nino = () => {
   return (
     <Fragment>
       <nav className="navbar navbar-default" >
@@ -33,30 +33,43 @@ export const VistaExterno = () => {
           </div>
           <div className="navbar-collapse collapse">
             <ul className="nav navbar-nav navbar-right">
-            <li className="active"><Link to='/actualizar-datos'> ACTUALIZAR DATOS </Link></li>
-            <li className="active"><Link to='/esquema-vacunacion'> ESQUEMA DE <br/> VACUNACIÓN </Link></li>
-            <li className="active"><Link to='/citas-agendadas'> VER CITAS </Link></li>
-            <li className="active"><Link to='/registro-nino'> AGENDAR CITA </Link></li>
-            <li className="active"><Link to='/'> CERRAR SESIÓN </Link></li>
-            
+            <li className="active"><Link to='/registro-adulto'> REGISTRARSE </Link></li>
+            <li className="active"><Link to='/login'> ACCEDER </Link></li>
             <li><Link data-toggle="modal" data-target="#myModal" to="#myModal"><i className="fa fa-envelope-o"></i></Link></li>
             </ul>
           </div>
           {/* .nav-collapse --> */} 
         </div>
       </div>
-      <div id="headerwrap_e">
+      <div id="headerwrap_r_a">
         <div className="container">
-          <div className="row rigth">
-            <div className="col-lg-11">
-              <div>
-                
-                  <h1><b> Las vacunas pueden prevenir enfermedades infecciosas que 
-                  antes causaban muerte o daño a otros bebes, niños y adultos.
-                  </b></h1>
-                
-              </div>
-          
+          <div className="row centered">
+            <div className="col-lg-12">
+            <br/>
+                <form action="">
+                  <label for="">Nombre</label>
+                  <input type="text" />
+                  <label for="">Apellido</label>
+                  <input type="text" />
+                  <label for="">Nacimiento</label>
+                  <input type="text" />
+                  <label for="">Genero</label>
+                  <input type="text" />
+                  <label for="">Numero de documento</label>
+                  <input type="number" />
+                  <label for="">Dirección</label>
+                  <input type="text" />
+                  <label for="">Correo Electronico</label>
+                  <input type="text" />
+                  <label for="">Celular</label>
+                  <input type="text" />
+                  <br/>
+                  <label for="">Clave</label>
+                  <input type="text" />
+
+                  <button>Anterior</button>
+                  <button>Siguiente</button>
+        </form>
             </div>
           </div>
         {/* <!-- row --> */} 
