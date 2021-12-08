@@ -1,13 +1,14 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Footer } from "../../Componentes/Footer";
+import { HeadAdministrador } from "../../Componentes/HeadAdministrador";
 import { HeadUsuarioInterno } from "../../Componentes/HeadUsuarioInterno";
 import "./interno.css";
 
 export const BuscarUsuarioInterno = () => {
   return (
     <Fragment>
-      <HeadUsuarioInterno />
+      <HeadAdministrador />
       <div id="headerwrap_r_a">
         <div className="container">
           <div className="row centered">
