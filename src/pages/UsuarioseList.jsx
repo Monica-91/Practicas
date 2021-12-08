@@ -11,7 +11,6 @@ export function UsuarioseList() {
                         <th>Apellido del Niño</th>
                         <th>Número Documento</th>
                         <th>Genero del Niño</th>
-                        <th>Nacionalidad del Niño</th>
                         <th>Nombre Acudiente</th>
                         <th>Apellido Acudiente</th>
                         <th>Direccion</th>
@@ -26,7 +25,6 @@ export function UsuarioseList() {
                           <td>{usue.apell_n}</td>
                           <td>{usue.doc_n}</td>
                           <td>{usue.gen_n}</td>
-                          <td>{usue.nac_n}</td>
                           <td>{usue.nom}</td>
                           <td>{usue.apell}</td>
                           <td>{usue.dir}</td>

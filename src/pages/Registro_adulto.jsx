@@ -17,7 +17,6 @@ export const Registro_adulto = () => {
 	const [fecha_nac, cambiarFecha_nac] = useState({campo: '', valido: null});
 	const [genero_n, cambiarGenero_n] = useState({campo: '', valido: null});
   const [tipo_sangre, cambiarTipo_sangre] = useState({campo: '', valido: null});
-  const [nacionalidad_n, cambiarNacionalidad_n] = useState({campo: '', valido: null});
   
   const [nombre, cambiarNombre] = useState({campo: '', valido: null});
 	const [apellido, cambiarApellido] = useState({campo: '', valido: null});
@@ -27,7 +26,6 @@ export const Registro_adulto = () => {
   const [direccion, cambiarDireccion] = useState({campo: '', valido: null});
   const [correo, cambiarCorreo] = useState({campo: '', valido: null});
 	const [telefono, cambiarTelefono] = useState({campo: '', valido: null});
-	const [nacionalidad, cambiarNacionalidad] = useState({campo: '', valido: null});
 	const [password, cambiarPassword] = useState({campo: '', valido: null});
 	const [password2, cambiarPassword2] = useState({campo: '', valido: null});
   const [terminos, cambiarTerminos] = useState(false);
@@ -37,8 +35,7 @@ export const Registro_adulto = () => {
 		apellido: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras, numeros, guion y guion_bajo
     apellido_n: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras, numeros, guion y guion_bajo
 		nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-    nombre_n: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-		nacionalidad: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+    nombre_n: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos..
     parentezco: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
     genero: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
     genero_n: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
@@ -48,8 +45,8 @@ export const Registro_adulto = () => {
     documento: /^.{4,12}$/, // 4 a 12 digitos.
     documento_n: /^.{4,12}$/, // 4 a 12 digitos.
 		correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-    direccion: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras, numeros, guion y guion_bajo
-		telefono: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras, numeros, guion y guion_bajo
+    direccion: /^[a-zA-Z0-9_.+-]+$/,
+		telefono: /^[a-zA-Z0-9_.+-]+$/,
 	}
 
 	const validarPassword2 = () => {
@@ -81,8 +78,6 @@ export const Registro_adulto = () => {
       fecha_nac.valido === 'true'&&
       genero_n.valido === 'true' &&     
       tipo_sangre.valido === 'true'&&
-      nacionalidad_n.valido === 'true' &&
-
 
       nombre.valido === 'true' &&
 			apellido.valido === 'true' &&
@@ -92,7 +87,6 @@ export const Registro_adulto = () => {
       direccion.valido === 'true' &&
       correo.valido === 'true' &&
       telefono.valido === 'true' &&
-      nacionalidad.valido === 'true' &&
       password.valido === 'true' &&
 			terminos
 		){
@@ -104,7 +98,6 @@ export const Registro_adulto = () => {
       const fec_nac = fecha_nac.campo; 
       const gen_n = genero_n.campo;
       const sang = tipo_sangre.campo; 
-      const nac_n = nacionalidad_n.campo;
 
       const nom = nombre.campo;
       const apell = apellido.campo;
@@ -114,7 +107,6 @@ export const Registro_adulto = () => {
       const dir = direccion.campo;
       const corr = correo.campo;
       const cel = telefono.campo;
-      const nac = nacionalidad.campo;
       const cla = password.campo;
 
       //Crea un objeto JSON, con los datos capturados
@@ -133,7 +125,6 @@ export const Registro_adulto = () => {
       cambiarFecha_nac({campo: '', valido: null});
       cambiarGenero_n({campo: '', valido: null});
       cambiarTipo_sangre({campo: '', valido: null});
-      cambiarNacionalidad_n({campo: '', valido: null});
 
 
       cambiarNombre({campo: '', valido: null});
@@ -144,7 +135,6 @@ export const Registro_adulto = () => {
       cambiarDireccion({campo: '', valido: null});
       cambiarCorreo({campo: '', valido: null});
       cambiarTelefono({campo: '', valido: null});
-      cambiarNacionalidad({campo: '', valido: null});
 			cambiarPassword({campo: '', valido: null});
 			cambiarPassword2({campo: '', valido: null});
       
@@ -329,8 +319,6 @@ export const Registro_adulto = () => {
                     label="Dirección"
                     placeholder=""
                     name="direccion"
-                    leyendaError="La dirección solo puede contener letras , números y espacios."
-                    expresionRegular={expresiones.direccion}
                   />
 
                   <Input
@@ -354,7 +342,6 @@ export const Registro_adulto = () => {
                     expresionRegular={expresiones.telefono}
                   />
                   
-
                   <Input
                     estado={password}
                     cambiarEstado={cambiarPassword}
