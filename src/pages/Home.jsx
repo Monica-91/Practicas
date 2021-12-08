@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import { Head } from "./Head";
-import { Footer } from "./Footer";
+import { Head } from "../Componentes/Head";
+import { Footer } from "../Componentes/Footer";
 
 export const Home = () => {
   return (
