@@ -21,16 +21,10 @@ export const Registro_adulto = () => {
 
   const [nombre_n, cambiarNombre_n] = useState({ campo: "", valido: null });
   const [apellido_n, cambiarApellido_n] = useState({ campo: "", valido: null });
-  const [documento_n, cambiarDocumento_n] = useState({
-    campo: "",
-    valido: null,
-  });
+  const [documento_n, cambiarDocumento_n] = useState({campo: "", valido: null});
   const [fecha_nac, cambiarFecha_nac] = useState({ campo: "", valido: null });
   const [genero_n, cambiarGenero_n] = useState({ campo: "", valido: null });
-  const [tipo_sangre, cambiarTipo_sangre] = useState({
-    campo: "",
-    valido: null,
-  });
+  const [tipo_sangre, cambiarTipo_sangre] = useState({campo: "",valido: null});
 
   const [nombre, cambiarNombre] = useState({ campo: "", valido: null });
   const [apellido, cambiarApellido] = useState({ campo: "", valido: null });
