@@ -70,6 +70,9 @@ export const Login = () => {
               <li className="active">
                 <Link to="/interno"> Vista Interno </Link>
               </li>
+              <li className="active">
+                <Link to="/administrador"> Vista Administrador </Link>
+              </li>
               <li>
                 <Link data-toggle="modal" data-target="#myModal" to="#myModal">
                   <i className="fa fa-envelope-o"></i>

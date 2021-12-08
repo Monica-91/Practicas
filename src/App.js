@@ -12,7 +12,10 @@ import {
 import { UsuarioseList } from "./pages/Vistas_externo/UsuarioseList";
 
 import { Header } from "./pages/Home";
-import { Navbar } from "./pages/CrearUsuarioInterno";
+import {
+  CrearUsuarioInterno,
+  Navbar,
+} from "./pages/Vista_Administrador/CrearUsuarioInterno";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 
@@ -29,6 +32,8 @@ import { Inventario_vacuna } from "./pages/Vistas_interno/Inventario_vacuna";
 import { ModificarStock } from "./pages/Vistas_interno/ModificarStock";
 import { BuscarUsuario } from "./pages/Vistas_interno/BuscarUsuario";
 import { EsquemaNino } from "./pages/Vistas_interno/EsquemaNino";
+import { VistaAdministrador } from "./pages/Vista_Administrador/VistaAdministrador";
+import { BuscarUsuarioInterno } from "./pages/Vista_Administrador/BuscarUsuarioInterno";
 
 function App() {
   return (
@@ -36,6 +41,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          {/* Rutas de Vista Externo */}
           <Route path="/registro-adulto" element={<Registro_adulto />} />
           <Route path="/registro-nino" element={<Registro_nino />} />
           <Route path="/login" element={<Login />} />
@@ -44,18 +50,27 @@ function App() {
           <Route path="/ingresar-esquema" element={<IngresarEsquema />} />
           <Route path="/agendar-citas" element={<AgendarCitas />} />
 
+          {/* Rutas de Vista Interno */}
+          <Route path="/externo" element={<VistaExterno />} />
           <Route path="/interno" element={<VistaInterno />} />
           <Route path="/inventario_vacuna" element={<Inventario_vacuna />} />
-
           <Route path="/modificar_stock" element={<ModificarStock />} />
-
           <Route path="/buscarUsuario" element={<BuscarUsuario />} />
           <Route path="/EsquemaNino" element={<EsquemaNino />} />
 
-          <Route path="/" element={<Home />} />
+          {/* Rutas vista Administrador */}
+          <Route path="/administrador" element={<VistaAdministrador />} />
+          <Route
+            path="/crearUsuarioInterno"
+            element={<CrearUsuarioInterno />}
+          />
+          <Route
+            path="/buscarUsuarioInterno"
+            element={<BuscarUsuarioInterno />}
+          />
 
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/externo" element={<VistaExterno />} />
           <Route path="/lista" element={<UsuarioseList />} />
         </Routes>
       </Router>
