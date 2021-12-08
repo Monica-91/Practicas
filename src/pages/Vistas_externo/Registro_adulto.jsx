@@ -8,10 +8,11 @@ import {
   Boton,
   MensajeExito,
   MensajeError,
-} from "./../elementos/Formularios";
+  titulo,
+} from "../../elementos/Formularios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
-import Input from "./Input";
+import Input from "../Input";
 
 export const Registro_adulto = () => {
   //formulario
@@ -319,18 +320,17 @@ export const Registro_adulto = () => {
                   leyendaError="El tipo de sangre solo puede contener letras y espacios."
                   expresionRegular={expresiones.tipo_sangre}
                 />
-              </Formulario>
-              <br />
-              <br />
-              <div className="row centered">
-                <p>
-                  <h1>
-                    <b>Datos del Adulto</b>
-                  </h1>
-                </p>
-              </div>
 
-              <Formulario action="" onSubmit={onSubmit}>
+                <br />
+                <br />
+                <div className="row centered">
+                  <p>
+                    <h1>
+                      <titulo>Datos del Adulto</titulo>
+                    </h1>
+                  </p>
+                </div>
+
                 <Input
                   estado={nombre}
                   cambiarEstado={cambiarNombre}

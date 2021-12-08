@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import { Footer } from "./Footer";
-import { HeadUsuarioInterno } from "./HeadUsuarioInterno";
+import { Footer } from "../../Componentes/Footer";
+import { HeadUsuarioInterno } from "../../Componentes/HeadUsuarioInterno";
 import "./interno.css";
 
 export const BuscarUsuario = () => {

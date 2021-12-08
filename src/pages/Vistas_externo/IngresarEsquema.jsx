@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Footer } from "../../Componentes/Footer";
-import { HeadUsuarioInterno } from "../../Componentes/HeadUsuarioInterno";
-import "./interno.css";
+import { HeadUsuarioExterno } from "../../Componentes/HeadUsuarioExterno";
 
-export const EsquemaNino = () => {
+export const IngresarEsquema = () => {
   return (
     <Fragment>
-      <HeadUsuarioInterno />
+      <HeadUsuarioExterno />
+
       <div id="headerwrap_r_a">
         <div className="container-tabla">
           <div className="row centered">
@@ -162,16 +162,6 @@ export const EsquemaNino = () => {
                   <td></td>
                 </tr>
               </table>
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <button type="button">
-                <Link to="/modificar_stock">Modificar</Link>
-              </button>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <button>Ingresar</button>
             </div>
           </div>
           {/* <!-- row --> */}
@@ -180,6 +170,7 @@ export const EsquemaNino = () => {
       </div>
       {/*  <!-- headerwrap --> */}
 
+      {/* {/*  <!-- FOOTER --> */}
       <Footer />
     </Fragment>
   );

@@ -9,20 +9,20 @@ import {
   Route,
   Link,
 } from "react-router-dom";
-import { UsuarioseList } from "./pages/UsuarioseList";
+import { UsuarioseList } from "./pages/Vistas_externo/UsuarioseList";
 
 import { Header } from "./pages/Home";
 import { Navbar } from "./pages/CrearUsuarioInterno";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 
-import { Registro_adulto } from "./pages/Registro_adulto";
-import { Registro_nino } from "./pages/Registro_nino";
+import { Registro_adulto } from "./pages/Vistas_externo/Registro_adulto";
+import { Registro_nino } from "./pages/Vistas_externo/Registro_nino";
 import { Login } from "./pages/Login";
-import { VistaExterno } from "./pages/VistaExterno";
-import { ActualizarDatos } from "./pages/ActualizarDatos";
-import { IngresarEsquema } from "./pages/IngresarEsquema";
-import { AgendarCitas } from "./pages/AgendarCitas";
+import { VistaExterno } from "./pages/Vistas_externo/VistaExterno";
+import { ActualizarDatos } from "./pages/Vistas_externo/ActualizarDatos";
+import { IngresarEsquema } from "./pages/Vistas_externo/IngresarEsquema";
+import { AgendarCitas } from "./pages/Vistas_externo/AgendarCitas";
 
 import { VistaInterno } from "./pages/Vistas_interno/VistaInterno";
 import { Inventario_vacuna } from "./pages/Vistas_interno/Inventario_vacuna";
@@ -42,7 +42,7 @@ function App() {
           <Route path="/externo" element={<VistaExterno />} />
           <Route path="/actualizar-datos" element={<ActualizarDatos />} />
           <Route path="/ingresar-esquema" element={<IngresarEsquema />} />
-          <Route path="/citas-agendadas" element={<AgendarCitas />} />
+          <Route path="/agendar-citas" element={<AgendarCitas />} />
 
           <Route path="/interno" element={<VistaInterno />} />
           <Route path="/inventario_vacuna" element={<Inventario_vacuna />} />

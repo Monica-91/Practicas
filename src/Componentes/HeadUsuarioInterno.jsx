@@ -68,7 +68,7 @@ export const HeadUsuarioInterno = () => {
                 <Link to="/buscarUsuario"> Buscar Usuario </Link>
               </li>
               <li className="active">
-                <Link to="/buscarUsuario"> Algo </Link>
+                <Link to="/"> Cerrar Sesion </Link>
               </li>
               <img src="nombre.png" alt="" />
               <li>
