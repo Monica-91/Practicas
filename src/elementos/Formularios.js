@@ -153,12 +153,15 @@ const MensajeError = styled.div`
     margin-left: 10px;
   }
 `;
-const titulo = styled.h1`
-  align-items: center;
-  font-family: "Raleway";
-  font-weight: 300;
-  color: #333;
-`;
+const Titulo = styled.p`
+ font-weight: 700;
+ text-color: #33333
+ box-sizing: border-box;
+ font-family: "Raleway";
+ font-size: 36px;
+ line-height: 1.1;
+ margin-bottom: 25px;
+ text-align: center;`;
 
 export {
   Formulario,
@@ -172,5 +175,5 @@ export {
   Boton,
   MensajeExito,
   MensajeError,
-  titulo,
+  Titulo,
 };
