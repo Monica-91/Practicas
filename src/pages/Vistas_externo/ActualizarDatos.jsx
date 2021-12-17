@@ -65,28 +65,6 @@ export const ActualizarDatos = () => {
       </div>
       {/*  <!-- headerwrap --> */}
 
-      {/* {/*  <!-- FOOTER --> */}
-      <div id="f">
-        <div className="container">
-          <div className="row centered">
-            <Link to="#">
-              <i className="fa fa-twitter"></i>
-            </Link>
-            <Link to="#">
-              <i className="fa fa-facebook"></i>
-            </Link>
-            <Link to="#">
-              <i className="fa fa-dribbble"></i>
-            </Link>
-          </div>
-          {/* {/*  <!-- row --> */}
-        </div>
-        {/* {/*  <!-- container --> */}
-      </div>
-      {/* {/*  <!-- Footer --> */}
-
-      {/* {/*  <!-- MODAL FOR CONTACT --> */}
-      {/* {/*  <!-- Modal --> */}
       <Footer />
     </Fragment>
   );

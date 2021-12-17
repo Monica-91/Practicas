@@ -83,6 +83,7 @@ export const Login = () => {
           {/* .nav-collapse --> */}
         </div>
       </div>
+      {/* Fin Head */}
 
       <div id="headerwrap_r_n">
         <div className="container">
