@@ -15,13 +15,12 @@ import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import Input from "../Input";
 import { Footer } from "../../Componentes/Footer";
 import { HeadAdministrador } from "../../Componentes/HeadAdministrador";
-
 export const CrearUsuarioInterno = () => {
   //formulario
   //Array de Lista de usuarios Externos
   let listadoUsuarioi;
   
- 
+  var host="http://localhost:9000"
 
   const [nombre, cambiarNombre] = useState({campo: '', valido: null});
 	const [apellido, cambiarApellido] = useState({campo: '', valido: null});
@@ -39,12 +38,12 @@ export const CrearUsuarioInterno = () => {
 	const expresiones = {
 		apellido: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras, numeros, guion y guion_bajo
 		nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-		fechan: /^(?:3[01]|[12][0-9]|0?[1-9])([\-/.])(0?[1-9]|1[1-2])\1\d{4}$/, // Letras y espacios, pueden llevar acentos.
-    genero: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-    password: /^.{4,12}$/, // 4 a 12 digitos.
-    documento: /^.{4,12}$/, // 4 a 12 digitos.
+		fechan: /^\d{1,2}\/\d{1,2}\/\d{2,4}$/, // Letras y espacios, pueden llevar acentos.
+    	genero: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+    	password: /^.{4,12}$/, // 4 a 12 digitos.
+    	documento: /^.{4,12}$/, // 4 a 12 digitos.
 		correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-    direccion: /^[a-zA-Z0-9_.+-]+$/,
+    	direccion: /^[a-zA-Z0-9_.+-]+$/,
 		telefono: /^\d{7,14}$/ // 7 a 14 numeros.
 	}
 
@@ -66,18 +65,20 @@ export const CrearUsuarioInterno = () => {
 		cambiarTerminos(e.target.checked);
 	}
 
+
+
 	const onSubmit = (e) => {
 		e.preventDefault();
 
 		if(
 			nombre.valido === 'true' &&
 			apellido.valido === 'true' &&
-      fechan.valido === 'true' &&
-      genero.valido === 'true' &&
-      documento.valido === 'true' &&
-      correo.valido === 'true' &&
-      telefono.valido === 'true' &&
-      password.valido === 'true' &&
+			fechan.valido === 'true' &&
+			genero.valido === 'true' &&
+			documento.valido === 'true' &&
+			correo.valido === 'true' &&
+			telefono.valido === 'true' &&
+			password.valido === 'true' &&
 			terminos
 		){
       //Captura los datos de las cajas de texto
@@ -91,14 +92,24 @@ export const CrearUsuarioInterno = () => {
       const cel = telefono.campo;
       const cla = password.campo;
 
+	  fetch(`http://localhost:9000/api/users/`, {
+		headers: {"content-type": "application/json" },
+		method: "POST",
+		body: JSON.stringify({nom, apell, cla, corr, cel, dir, fen, gen, doc})
+	})
+	.then(data => data.json()) // Obtener los datos
+	.then(data => alert(data.msg))  // Mostrar mensaje OK    :) 
+	.catch(error => alert(error));  // Mostrar mensaje error :(
+
+
       //Crea un objeto JSON, con los datos capturados
-      const usui = { nom, apell,fen, gen, doc, dir,corr, cel, cla};
+      // const usui = { nom, apell,fen, gen, doc, dir,corr, cel, cla};
       //Obtiene los usuarios Externos guardados en Local Storage
-      listadoUsuarioi = JSON.parse(localStorage.getItem("listaUsuariosi")) || [];
+      //listadoUsuarioi = JSON.parse(localStorage.getItem("listaUsuariosi")) || [];
       //Se adiciona el nuevo usuarios Externo al array
-      listadoUsuarioi.push(usui);
+      //listadoUsuarioi.push(usui);
       //Se guarda en local storage
-      localStorage.setItem("listaUsuariosi", JSON.stringify(listadoUsuarioi));
+      //localStorage.setItem("listaUsuariosi", JSON.stringify(listadoUsuarioi));
       // Borrar los campos
 			cambiarFormularioValido(true);
 			cambiarNombre({campo: '', valido: null});
@@ -107,10 +118,10 @@ export const CrearUsuarioInterno = () => {
 			cambiarPassword2({campo: '', valido: null});
 			cambiarCorreo({campo: '', valido: null});
 			cambiarTelefono({campo: '', valido: null});
-      cambiarDireccion({campo: '', valido: null});
-      cambiarFechan({campo: '', valido: null});
-      cambiarGenero({campo: '', valido: null});
-      cambiarDocumento({campo: '', valido: null});
+			cambiarDireccion({campo: '', valido: null});
+			cambiarFechan({campo: '', valido: null});
+			cambiarGenero({campo: '', valido: null});
+			cambiarDocumento({campo: '', valido: null});
 
 			// ... 
 		} else {
@@ -251,9 +262,15 @@ export const CrearUsuarioInterno = () => {
 				</MensajeError>}
 				<ContenedorBotonCentrado>
 					<Boton type="submit">Guardar</Boton>
-          
-          <Link to="/listai">Listar</Link>
-        {formularioValido === true && <MensajeExito>Formulario enviado exitosamente!</MensajeExito>}
+					<p></p>
+					<Boton type="button" onclick="consultar()">Buscar</Boton>{"\n"}
+					<p></p>
+					<Boton type="button" onclick="editar()">Editar</Boton>{"\n"}
+					<p></p>
+					<Boton type="button" onclick="borrar()">Borrrar</Boton>{"\n"}
+                    <p></p>
+					<Link to="/listai">Listar</Link>
+					{formularioValido === true && <MensajeExito>Formulario enviado exitosamente!</MensajeExito>}
 				</ContenedorBotonCentrado>
 			</Formulario>
 		 </main> 
@@ -267,4 +284,7 @@ export const CrearUsuarioInterno = () => {
       <Footer />
     </Fragment>
   );
+
+  
 };
+
