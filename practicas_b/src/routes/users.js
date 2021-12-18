@@ -68,7 +68,7 @@ router.post('/users', (req, res) => {
  * Get all users
  */
 router.get('/users', (req, res) => {
-    userSchema
+    userModel
         .find()
         .then((data)=> res.json(data))
         .catch((error)=> console.error({message: error}))
@@ -77,10 +77,10 @@ router.get('/users', (req, res) => {
 /**
  * Get a user
  */
-router.get('/users/:id', (req, res) => {
-    const {id} = req.params;
-    userSchema
-        .findById(id)
+router.get('/users/:nom', (req, res) => {
+    const {nom} = req.params;
+    userModel
+        .findById(nom)
         .then((data)=> res.json(data))
         .catch((error)=> console.error({message: error}))
 });
