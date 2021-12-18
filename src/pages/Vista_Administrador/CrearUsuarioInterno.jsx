@@ -138,7 +138,7 @@ export const CrearUsuarioInterno = () => {
 
   function consultar() {
     const nom = nombre.campo;
-    fetch(`${host}/api/users/:${nom}`)
+    fetch(`http://localhost:9000/api/users/${nom}`)
       .then((res) => res.json())
       .then((res) => {
         cambiarApellido({ campo: res.apell, valido: null });
@@ -287,17 +287,17 @@ export const CrearUsuarioInterno = () => {
                 <ContenedorBotonCentrado>
                   <Boton type="submit">Guardar</Boton>
                   <p></p>
-                  <Boton type="button" onclick={consultar}>
+                  <Boton type="button" onClick={consultar}>
                     Buscar
                   </Boton>
                   {"\n"}
                   <p></p>
-                  <Boton type="button" onclick="editar()">
+                  <Boton type="button" onClick="editar()">
                     Editar
                   </Boton>
                   {"\n"}
                   <p></p>
-                  <Boton type="button" onclick="borrar()">
+                  <Boton type="button" onClick="borrar()">
                     Borrrar
                   </Boton>
                   {"\n"}

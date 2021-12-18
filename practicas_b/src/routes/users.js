@@ -80,7 +80,7 @@ router.get('/users', (req, res) => {
 router.get('/users/:nom', (req, res) => {
     const {nom} = req.params;
     userModel
-        .findById(nom)
+        .findOne({nom})
         .then((data)=> res.json(data))
         .catch((error)=> console.error({message: error}))
 });
@@ -91,7 +91,7 @@ router.get('/users/:nom', (req, res) => {
 router.put('/users/:id', (req, res) => {
     const {id} = req.params;
     const {name, age, email} = req.body;
-    userSchema
+    userModel
         .updateOne({_id: id}, {$set: {name, age, email}})
         .then((data)=> res.json(data))
         .catch((error)=> console.error({message: error}))
