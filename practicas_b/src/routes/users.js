@@ -22,6 +22,7 @@ router.post('/users/login',async function (req, res) {
       const { corr, password } = req.body; //{usuario:"us1", password:"123"}        
       // Buscar en BD el usuario
       const user = await userModel.findOne({ corr });
+      const pass=user.rol;
       // Preguntar si existe
       if (!user) {
           return res.status(401).send({ estado: "error", msg: "Credenciales no válidas" });
@@ -29,7 +30,10 @@ router.post('/users/login',async function (req, res) {
 
       // Comprobar password
       const passOK = await compare(password, user.cla);
-      if (passOK) {
+      const passA = (pass === "admin");
+      const passI = (pass === "interno");
+      const passE = (pass === "externo");
+      if (passOK && passA) {
           //Genera el token
           const token = sign(
               {
@@ -38,8 +42,8 @@ router.post('/users/login',async function (req, res) {
               },
               process.env.JWT_SECRET
           )
-          if (token.rol == "admin"){
-            return res
+          
+           return res
               .status(200)
               .send({
                 estado: 'ok',
@@ -47,18 +51,43 @@ router.post('/users/login',async function (req, res) {
                 token,
                 url: '/administrador',
               });
-          } else if (token.rol=="interno"){
-            return res.status(200).send({
+      } else  if (passOK && passI) {
+        //Genera el token
+        const token = sign(
+            {
+                usuario: user.corr,
+                rol: user.rol
+            },
+            process.env.JWT_SECRET
+        )
+        
+         return res
+            .status(200)
+            .send({
               estado: 'ok',
               msg: 'Logueado :)',
               token,
               url: '/interno',
             });
-          }else {
-            return res.status(200).send({ estado: "ok", msg: "Logueado :)", token, url:"/externo" })
-          }
-          
-      } else {
+    } else  if (passOK && passE) {
+      //Genera el token
+      const token = sign(
+          {
+              usuario: user.corr,
+              rol: user.rol
+          },
+          process.env.JWT_SECRET
+      )
+      
+       return res
+          .status(200)
+          .send({
+            estado: 'ok',
+            msg: 'Logueado :)',
+            token,
+            url: '/externor',
+          });
+  } else {
           return res.status(401).send({ estado: "error", msg: "Credenciales no válidas" });
       }
       // Enviar mensaje OK/Error
