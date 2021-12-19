@@ -45,12 +45,21 @@ export const Login = () => {
           }),
       })
         .then(res => res.json())
-        .then(res => { if (res.estado === "ok") {
+        .then(res => {
+          if (res.estado === "ok") {
+              { localStorage.setItem("token",res.token);
+                  window.location.href = res.url }
+          } else {
+              setError(true);
+              setMsgError(res.msg);
+          }
+      })
+        {/*.then(res => { if (res.estado === "ok") {
       
                   {localStorage.setItem("token",res.token);
                   window.location.href = res.url }}
           
-          })
+          })*/}
   }
   return (
     <>
