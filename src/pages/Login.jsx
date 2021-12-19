@@ -1,8 +1,34 @@
-import React, { Fragment } from "react";
+import React, { Fragment,useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 export const Login = () => {
+  const [error, setError] = useState();
+  const [msgError, setMsgError] = useState();
+  const usuarioRef = useRef();
+  const passwordRef = useRef();
+  function login() {
+      const usuario = usuarioRef.current.value;
+      const password = passwordRef.current.value;
+      fetch(`http://localhost:9000/api/users/login`, {
+          headers: { "content-type": "application/json" },
+          method: "POST",
+          body: JSON.stringify({ usuario,
+             password })
+      })
+        .then(res => res.json())
+        .then(res => {
+              if (res.estado === "ok") {
+                  {localStorage.setItem("token",res.token);
+                      window.location.href = "/administrador" }
+              } else {
+                  setError(true);
+                  setMsgError(res.msg);
+              }
+          })
+  }
   return (
+    <>
+    {error && <div className="alert alert-danger" role="alert">{msgError}</div>}
     <Fragment>
       <nav className="navbar navbar-default">
         <div className="container">
@@ -96,19 +122,19 @@ export const Login = () => {
               <label for="">Usuario</label>
               <br />
               <br />
-              <input type="text" />
+              <input ref={usuarioRef} className="form-control" type="text" />
               <br />
               <br />
               <br />
               <label for="">Contraseña</label>
               <br />
               <br />
-              <input type="text" />
+              <input ref={passwordRef} className="form-control" type="password" />
               <br />
               <br />
               <br />
               <br />
-              <button>ACCEDER</button>
+              <button  onClick={login}>ACCEDER</button>
             </form>
           </div>
           {/* <!-- row --> */}
@@ -272,5 +298,6 @@ export const Login = () => {
       {/*  <!-- Template Main Javascript File --> */}
       <script src="js/main.js"></script>
     </Fragment>
+    </>
   );
 };

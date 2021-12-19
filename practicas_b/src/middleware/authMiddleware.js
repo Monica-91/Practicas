@@ -10,7 +10,7 @@ function authMiddleware(req, res, next) {
       }
     const user = verifyAccessToken(accessToken);
 
-    if (user._id && user.email){
+    if (user.cla && user.email){
          console.log('autorizado')
     }
 

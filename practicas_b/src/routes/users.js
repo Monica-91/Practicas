@@ -2,6 +2,7 @@ const express = require('express');
 // Pasamos a importar el modelo de usuarios
 const  { userModel } = require('../models/userModels');
 
+
 // Hacemos uso del constructor de express llamado Router
 // para la creación de un enrutador
 const router = express.Router();
@@ -9,65 +10,63 @@ const router = express.Router();
 const { generateAccessToken } = require('../services/jwt');
 const User = require('../models/userModels');
 const bcrypt = require("bcryptjs");
+const { compare } = require("bcryptjs");
 const {authMiddleware} = require('../middleware/authMiddleware');
+const { sign } = require("jsonwebtoken");
+const { userSaveGuard } = require("../guards/userSaveGuard");
 const ApiError = require('../utils/ApiError');
 
-// Registro
-router.post("/register", async (req, res, next) => {
-    try {
-      // Get user input
-      const { name, username, email, password, passwordConfirmation } = req.body;
-  
-      // Validate user input
-      if (!(email && password && name && username && passwordConfirmation)) {
-          throw new ApiError("All input is required",400);
+// login
+router.post('/users/login',async function (req, res) {
+  try {
+      const { corr, password } = req.body; //{usuario:"us1", password:"123"}        
+      // Buscar en BD el usuario
+      const user = await userModel.findOne({ corr });
+      // Preguntar si existe
+      if (!user) {
+          return res.status(401).send({ estado: "error", msg: "Credenciales no válidas" });
       }
-  
-      if (password !== passwordConfirmation) {
-        throw new ApiError("Passwords do not match",400);
+
+      // Comprobar password
+      const passOK = await compare(password, user.cla);
+      if (passOK) {
+          //Genera el token
+          const token = sign(
+              {
+                  usuario: user.corr,
+                  rol: "admin"
+              },
+              process.env.JWT_SECRET
+          )
+          return res.status(200).send({ estado: "ok", msg: "Logueado :)", token, url:"/administrador" })
+      } else {
+          return res.status(401).send({ estado: "error", msg: "Credenciales no válidas" });
       }
-  
-      // Validamos la existencia del usuario en la base de datos
-      const oldUser = await User.findOne({ email });
-      console.log(oldUser);
-  
-      if (oldUser) {
-        throw new ApiError("User Already Exist. Please Login",400);
-      }
-  
-      //Encrypt user password
-      encryptedPassword = await bcrypt.hash(password, 10);
-  
-      // Creamos un usuario en la DB
-      const user = await User.create({
-        name,
-        username,
-        email, // sanitize: convert email to lowercase
-        password: encryptedPassword,
-      });
-  
-      res.status(200).json(user);
-    } catch (err) {
-      next(err);
-      console.log(err);
-    }
-      
-  });
+      // Enviar mensaje OK/Error
+  } catch (error) {
+      return res.status(401).send({ estado: "error", msg: "Credenciales no válidas", error });
+  }
+});
 /**
  * Create User
  */
-router.post('/users', (req, res) => {
-    const users = userModel(req.body);
-    users
-        .save()
-        .then((data)=> res.json({estado:"ok",msg:"usuario guardado"}))
-        .catch((error)=> console.error({message: error}))
-});
+router.post('/users', userSaveGuard,  (req, res) => {
+  const users = userModel(req.body);
+  users
+      .save(function (error) {
+      if (error) {
+          return res.status(500).send({ estado: "error", msg: "ERROR: Usuario NO guardado" });
+      }
+      return res.status(200).send({ estado: "ok", msg: "Usuario Guardado" });
+  })
+})
+
+
 
 /**
  * Get all users
  */
-router.get('/users', (req, res) => {
+router.get('/users', async (req, res) => {
     userModel
         .find()
         .then((data)=> res.json(data))

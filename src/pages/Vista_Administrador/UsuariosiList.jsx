@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from "react";
+
 
 export function UsuariosiList() {
-    const listado = JSON.parse(localStorage.getItem("listaUsuariosi")) || [];
+    const [listado, setListado] = useState([]);
+
+    useEffect(() => {
+    fetch(`http://localhost:9000/api/users/`)
+    .then(res => res.json())
+    .then(res => {
+
+        setListado(res);
+
+    })
+   }, [])
+
+          
+    //const listado = JSON.parse(localStorage.getItem("listaUsuariosi")) || [];
     return(
         <>
             <table className="table">
@@ -18,7 +32,7 @@ export function UsuariosiList() {
                 </thead>
                 <tbody>
                     {
-                      listado.map(usui => <tr>
+                        listado.map(usui => <tr>
                           <td>{usui.nom}</td>
                           <td>{usui.apell}</td>
                           <td>{usui.fen}</td>
