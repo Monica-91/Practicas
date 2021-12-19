@@ -135,11 +135,11 @@ router.get('/users/:doc', (req, res) => {
 /**
  * Update a user
  */
-router.put('/users/:id', (req, res) => {
-    const {id} = req.params;
-    const {name, age, email} = req.body;
+router.put('/users/:doc', (req, res) => {
+    const {doc} = req.params;
+    const {nom, apell, corr, cel, dir, fen, gen} = req.body;
     userModel
-        .updateOne({_id: id}, {$set: {name, age, email}})
+        .updateOne({doc}, {$set: {nom, apell, corr, cel, dir, fen, gen}})
         .then((data)=> res.json(data))
         .catch((error)=> console.error({message: error}))
 });

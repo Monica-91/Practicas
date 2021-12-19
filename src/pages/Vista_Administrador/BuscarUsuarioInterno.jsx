@@ -19,13 +19,12 @@ export const BuscarUsuarioInterno = () => {
   var usuarioRef = useRef();
   const [nombre, cambiarNombre] = useState({ campo: "", valido: null });
   const [apellido, cambiarApellido] = useState({ campo: "", valido: null });
-  const [password, cambiarPassword] = useState({ campo: "", valido: null });
   const [correo, cambiarCorreo] = useState({ campo: "", valido: null });
   const [telefono, cambiarTelefono] = useState({ campo: "", valido: null });
   const [direccion, cambiarDireccion] = useState({ campo: "", valido: null });
   const [fechan, cambiarFechan] = useState({ campo: "", valido: null });
   const [genero, cambiarGenero] = useState({ campo: "", valido: null });
-
+  const [formularioValido, cambiarFormularioValido] = useState(null);
   const expresiones = {
     apellido: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras, numeros, guion y guion_bajo
     nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
@@ -44,15 +43,88 @@ export const BuscarUsuarioInterno = () => {
     fetch(`http://localhost:9000/api/users/${doc}`)
       .then((res) => res.json())
       .then((res) => {
-        cambiarNombre({ campo: res.nom, valido: null });
-        cambiarApellido({ campo: res.apell, valido: null });
-        cambiarCorreo({ campo: res.corr, valido: null });
-        cambiarTelefono({ campo: res.cel, valido: null });
-        cambiarDireccion({ campo: res.dir, valido: null });
-        cambiarFechan({ campo: res.fen, valido: null });
-        cambiarGenero({ campo: res.gen, valido: null });
+        cambiarNombre({ campo: res.nom, valido: "true" });
+        cambiarApellido({ campo: res.apell, valido: "true" });
+        cambiarCorreo({ campo: res.corr, valido: "true" });
+        cambiarTelefono({ campo: res.cel, valido: "true" });
+        cambiarDireccion({ campo: res.dir, valido: "true" });
+        cambiarFechan({ campo: res.fen, valido: "true" });
+        cambiarGenero({ campo: res.gen, valido: "true" });
       });
   }
+
+  function update()  {
+    const doc = usuarioRef.current.value;
+    if (
+      nombre.valido === "true" &&
+      apellido.valido === "true" &&
+      fechan.valido === "true" &&
+      genero.valido === "true" &&
+      correo.valido === "true" &&
+      telefono.valido === "true" 
+
+
+    )
+
+     {
+      //Captura los datos de las cajas de texto
+      const nom = nombre.campo;
+      const apell = apellido.campo;
+      const fen = fechan.campo;
+      const gen = genero.campo;
+      const dir = direccion.campo;
+      const corr = correo.campo;
+      const cel = telefono.campo;
+      const token = localStorage.getItem("token");
+      fetch(`http://localhost:9000/api/users/${doc}`, {
+        headers: {
+          "content-type": "application/json",
+          "authorization": `Bearer ${token}`
+      },
+        method: "PUT",
+        body: JSON.stringify({
+          nom,
+          apell,
+          corr,
+          cel,
+          dir,
+          fen,
+          gen,
+
+        }),
+      })
+        .then((res) => res.json()) // Obtener los datos
+        .then((res) => {
+         // Mostrar mensaje error :(
+
+      //Crea un objeto JSON, con los datos capturados
+      // const usui = { nom, apell,fen, gen, doc, dir,corr, cel, cla};
+      //Obtiene los usuarios Externos guardados en Local Storage
+      //listadoUsuarioi = JSON.parse(localStorage.getItem("listaUsuariosi")) || [];
+      //Se adiciona el nuevo usuarios Externo al array
+      //listadoUsuarioi.push(usui);
+      //Se guarda en local storage
+      //localStorage.setItem("listaUsuariosi", JSON.stringify(listadoUsuarioi));
+      // Borrar los campos
+      cambiarFormularioValido(true);
+      cambiarNombre({ campo: "", valido: null });
+      cambiarApellido({ campo: "", valido: null });
+      cambiarCorreo({ campo: "", valido: null });
+      cambiarTelefono({ campo: "", valido: null });
+      cambiarDireccion({ campo: "", valido: null });
+      cambiarFechan({ campo: "", valido: null });
+      cambiarGenero({ campo: "", valido: null });
+    
+        })
+
+      // ...
+    } else {
+      cambiarFormularioValido(false);
+    }
+  };
+
+
+
 
   return (
     <Fragment>
@@ -141,6 +213,17 @@ export const BuscarUsuarioInterno = () => {
                     leyendaError="El genero solo puede contener letras y espacios."
                     expresionRegular={expresiones.genero}
                   />
+                  <p></p>
+                  <Boton type="button" onClick={update}>
+                    Editar
+                  </Boton>
+                  {"\n"}
+                  <p></p> {formularioValido === true && (
+                    <MensajeExito>
+                      Actualizacion enviada exitosamente!
+                    </MensajeExito>
+                  )}
+
                 </Formulario>
               </main>
             </div>
