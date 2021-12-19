@@ -89,9 +89,12 @@ export const CrearUsuarioInterno = () => {
       const corr = correo.campo;
       const cel = telefono.campo;
       const cla = password.campo;
-
+      const token = localStorage.getItem("token");
       fetch(`http://localhost:9000/api/users/`, {
-        headers: { "content-type": "application/json" },
+        headers: {
+          "content-type": "application/json",
+          "authorization": `Bearer ${token}`
+      },
         method: "POST",
         body: JSON.stringify({
           nom,

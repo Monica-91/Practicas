@@ -1,29 +1,55 @@
 import React, { Fragment,useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  Formulario,
+  Label,
+  ContenedorTerminos,
+  ContenedorBotonCentrado,
+  Boton,
+
+} from "../elementos/Formularios";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import Input from "./Input";
+import { Footer } from "../Componentes/Footer";
+import { HeadAdministrador } from "../Componentes/HeadAdministrador";
 
 export const Login = () => {
+  const [correo, cambiarCorreo] = useState({ campo: "", valido: null });
+  const [clave, cambiarClave] = useState({ campo: "", valido: null });
   const [error, setError] = useState();
-  const [msgError, setMsgError] = useState();
-  const usuarioRef = useRef();
-  const passwordRef = useRef();
+    const [msgError, setMsgError] = useState();
+  const expresiones = {
+   
+    clave: /^.{4,12}$/, // 4 a 12 digitos.
+    correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+    
+  };
+
+
+ 
   function login() {
-      const usuario = usuarioRef.current.value;
-      const password = passwordRef.current.value;
+
+      //Captura los datos de las cajas de texto
+
+    const corr = correo.campo;
+    const password = clave.campo;
+    
       fetch(`http://localhost:9000/api/users/login`, {
           headers: { "content-type": "application/json" },
           method: "POST",
-          body: JSON.stringify({ usuario,
-             password })
+          body: JSON.stringify({ 
+             corr,
+             password, 
+          }),
       })
         .then(res => res.json())
-        .then(res => {
-              if (res.estado === "ok") {
+        .then(res => { if (res.estado === "ok") {
+      
                   {localStorage.setItem("token",res.token);
-                      window.location.href = "/administrador" }
-              } else {
-                  setError(true);
-                  setMsgError(res.msg);
-              }
+                  window.location.href = res.url }}
+          
           })
   }
   return (
@@ -116,26 +142,39 @@ export const Login = () => {
           <div className="row centered">
             <label for="">LOGIN</label>
             <br />
-            <form action="">
-              <br />
-              <br />
-              <label for="">Usuario</label>
-              <br />
-              <br />
-              <input ref={usuarioRef} className="form-control" type="text" />
-              <br />
-              <br />
-              <br />
-              <label for="">Contraseña</label>
-              <br />
-              <br />
-              <input ref={passwordRef} className="form-control" type="password" />
-              <br />
-              <br />
-              <br />
-              <br />
-              <button onClick={login}>ACCEDER</button>
-            </form>
+            {/*  <!-- Formulario --> */}
+            <main>
+              <Formulario action="" >
+              <Input
+                  estado={correo}
+                  cambiarEstado={cambiarCorreo}
+                  tipo="email"
+                  label="Correo Electrónico"
+                  placeholder="john@correo.com"
+                  name="correo"
+                  leyendaError="El correo solo puede contener letras, numeros, puntos, guiones y guion bajo."
+                  expresionRegular={expresiones.correo}
+                />
+                <Input
+                  estado={clave}
+                  cambiarEstado={cambiarClave}
+                  tipo="password"
+                  label="Contraseña"
+                  name="password1"
+                  leyendaError="La contraseña tiene que ser de 4 a 12 dígitos."
+                  expresionRegular={expresiones.clave}
+                />
+              <ContenedorBotonCentrado>
+                 
+                  <Boton type="button" onClick={login}>
+                    Login
+                  </Boton>
+                  
+                
+                  
+                </ContenedorBotonCentrado>
+                </Formulario>
+            </main>
           </div>
           {/* <!-- row --> */}
         </div>
