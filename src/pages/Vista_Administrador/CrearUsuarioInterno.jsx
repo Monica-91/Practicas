@@ -32,6 +32,8 @@ export const CrearUsuarioInterno = () => {
   const [fechan, cambiarFechan] = useState({ campo: "", valido: null });
   const [genero, cambiarGenero] = useState({ campo: "", valido: null });
   const [documento, cambiarDocumento] = useState({ campo: "", valido: null });
+  const [rolU, cambiarRolU] = useState({ campo: "", valido: null });
+
   const [terminos, cambiarTerminos] = useState(false);
   const [formularioValido, cambiarFormularioValido] = useState(null);
 
@@ -89,6 +91,7 @@ export const CrearUsuarioInterno = () => {
       const corr = correo.campo;
       const cel = telefono.campo;
       const cla = password.campo;
+      const rol = rolU.campo;
       const token = localStorage.getItem("token");
       fetch(`http://localhost:9000/api/users/`, {
         headers: {
@@ -106,6 +109,7 @@ export const CrearUsuarioInterno = () => {
           fen,
           gen,
           doc,
+          rol,
         }),
       })
         .then((data) => data.json()) // Obtener los datos
@@ -132,6 +136,7 @@ export const CrearUsuarioInterno = () => {
       cambiarFechan({ campo: "", valido: null });
       cambiarGenero({ campo: "", valido: null });
       cambiarDocumento({ campo: "", valido: null });
+      cambiarRolU({ campo: "", valido: null });
 
       // ...
     } else {
@@ -265,6 +270,13 @@ export const CrearUsuarioInterno = () => {
                   leyendaError="el documento tiene que ser de 4 a 12 dígitos."
                   expresionRegular={expresiones.documento}
                 />
+                <Input
+                  estado={rolU}
+                  cambiarEstado={cambiarRolU}
+                  tipo="text"
+                  label="rol"
+                  name="rol"
+                  />
 
                 <ContenedorTerminos>
                   <Label>

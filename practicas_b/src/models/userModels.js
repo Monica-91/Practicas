@@ -43,6 +43,10 @@ doc: {
     type: Number,
     required: true
 },
+rol: {
+  type:String,
+  requerid:true
+}
 
 });
 

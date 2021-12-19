@@ -65,7 +65,7 @@ export const HeadAdministrador = () => {
                 <Link to="/inventario_vacuna"> Vacunas </Link>
               </li>
               <li className="active">
-                <Link to="/buscarUsuarioInterno"> Buscar Usuario </Link>
+                <Link to="/buscarUsuarioInterno"> Buscar Usuario Interno </Link>
               </li>
               <li className="active">
                 <Link to="/crearUsuariointerno"> Crear Usuario Interno </Link>

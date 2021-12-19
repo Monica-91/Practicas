@@ -34,11 +34,30 @@ router.post('/users/login',async function (req, res) {
           const token = sign(
               {
                   usuario: user.corr,
-                  rol: "admin"
+                  rol: user.rol
               },
               process.env.JWT_SECRET
           )
-          return res.status(200).send({ estado: "ok", msg: "Logueado :)", token, url:"/administrador" })
+          if (token.rol == "admin"){
+            return res
+              .status(200)
+              .send({
+                estado: 'ok',
+                msg: 'Logueado :)',
+                token,
+                url: '/administrador',
+              });
+          } else if (token.rol=="interno"){
+            return res.status(200).send({
+              estado: 'ok',
+              msg: 'Logueado :)',
+              token,
+              url: '/interno',
+            });
+          }else {
+            return res.status(200).send({ estado: "ok", msg: "Logueado :)", token, url:"/externo" })
+          }
+          
       } else {
           return res.status(401).send({ estado: "error", msg: "Credenciales no válidas" });
       }
@@ -76,10 +95,10 @@ router.get('/users', async (req, res) => {
 /**
  * Get a user
  */
-router.get('/users/:nom', (req, res) => {
-    const {nom} = req.params;
+router.get('/users/:doc', (req, res) => {
+    const {doc} = req.params;
     userModel
-        .findOne({nom})
+        .findOne({doc})
         .then((data)=> res.json(data))
         .catch((error)=> console.error({message: error}))
 });

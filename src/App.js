@@ -64,10 +64,7 @@ function App() {
             path="/crearUsuarioInterno"
             element={<CrearUsuarioInterno />}
           />
-          <Route
-            path="/buscarUsuarioInterno"
-            element={<BuscarUsuarioInterno />}
-          />
+         <Route path="/buscarUsuarioInterno" element={< BuscarUsuarioInterno />}/>
 
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
