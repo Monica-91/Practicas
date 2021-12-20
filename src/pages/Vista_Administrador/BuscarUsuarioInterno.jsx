@@ -25,6 +25,7 @@ export const BuscarUsuarioInterno = () => {
   const [fechan, cambiarFechan] = useState({ campo: "", valido: null });
   const [genero, cambiarGenero] = useState({ campo: "", valido: null });
   const [formularioValido, cambiarFormularioValido] = useState(null);
+  const [formularioEncontrado, cambiarFormularioEncontrado] =useState({ campo: "", valido: null });
   const expresiones = {
     apellido: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras, numeros, guion y guion_bajo
     nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
@@ -43,6 +44,7 @@ export const BuscarUsuarioInterno = () => {
     fetch(`http://localhost:9000/api/users/${doc}`)
       .then((res) => res.json())
       .then((res) => {
+        try{
         cambiarNombre({ campo: res.nom, valido: "true" });
         cambiarApellido({ campo: res.apell, valido: "true" });
         cambiarCorreo({ campo: res.corr, valido: "true" });
@@ -50,6 +52,18 @@ export const BuscarUsuarioInterno = () => {
         cambiarDireccion({ campo: res.dir, valido: "true" });
         cambiarFechan({ campo: res.fen, valido: "true" });
         cambiarGenero({ campo: res.gen, valido: "true" });
+        cambiarFormularioEncontrado({ campo: "true" });}
+        catch (error){
+        cambiarNombre({ campo: "" });
+        cambiarApellido({ campo: ""});
+        cambiarCorreo({ campo: ""});
+        cambiarTelefono({ campo: ""});
+        cambiarDireccion({ campo: "" });
+        cambiarFechan({ campo: ""});
+        cambiarGenero({ campo: "" });
+        cambiarFormularioEncontrado({ campo: "false" });
+        }
+      
       });
   }
 
@@ -223,6 +237,19 @@ export const BuscarUsuarioInterno = () => {
                       Actualizacion enviada exitosamente!
                     </MensajeExito>
                   )}
+                  {formularioEncontrado.campo === "true" && (
+                    <MensajeExito>
+                      Encontrado
+                    </MensajeExito>
+                  )}
+                  {formularioEncontrado.campo === "false" && (
+                  <MensajeError>
+                    <p>
+                    No encontrado
+                 
+                    </p>
+                  </MensajeError>
+                )}
 
                 </Formulario>
               </main>

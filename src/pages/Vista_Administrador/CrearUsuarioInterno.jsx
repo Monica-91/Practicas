@@ -148,7 +148,7 @@ export const CrearUsuarioInterno = () => {
     const nom = nombre.campo;
     fetch(`http://localhost:9000/api/users/${nom}`)
       .then((res) => res.json())
-      .then((res) => {
+      .then((res) => { 
         cambiarApellido({ campo: res.apell, valido: null });
         cambiarPassword({ campo: res.cla, valido: null });
         cambiarCorreo({ campo: res.corr, valido: null });
@@ -157,7 +157,7 @@ export const CrearUsuarioInterno = () => {
         cambiarFechan({ campo: res.fen, valido: null });
         cambiarGenero({ campo: res.gen, valido: null });
         cambiarDocumento({ campo: res.doc, valido: null });
-      });
+      }).then((data) => alert(data.msg)) ;
   }
 
   return (
