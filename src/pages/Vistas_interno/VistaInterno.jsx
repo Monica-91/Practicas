@@ -7,7 +7,7 @@ export const VistaInterno = () => {
   return (
     <Fragment>
       <HeadUsuarioInterno />
-      <div id="headerwrap_e">
+      <div id="headerwrap_r_a">
         <div className="container">
           <div className="row centered">
             <div className="col-lg-7"></div>

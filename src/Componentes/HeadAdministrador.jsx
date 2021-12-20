@@ -62,7 +62,7 @@ export const HeadAdministrador = () => {
           <div className="navbar-collapse collapse">
             <ul className="nav navbar-nav navbar-right">
               <li className="active">
-                <Link to="/inventario_vacuna"> Vacunas </Link>
+                <Link to="/inventario_vacunaAdministrador"> Vacunas </Link>
               </li>
               <li className="active">
                 <Link to="/buscarUsuarioInterno"> Buscar Usuario Interno </Link>

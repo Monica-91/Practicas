@@ -7,7 +7,7 @@ export const VistaExterno = () => {
   return (
     <Fragment>
       <HeadUsuarioExterno />
-      <div id="headerwrap_e">
+      <div id="headerwrap_r_a">
         <div className="container">
           <div className="row rigth">
             <div className="col-lg-11">
