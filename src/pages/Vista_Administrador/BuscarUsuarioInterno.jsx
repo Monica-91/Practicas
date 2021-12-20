@@ -123,6 +123,76 @@ export const BuscarUsuarioInterno = () => {
     }
   };
 
+  function borrar() {
+    const doc = usuarioRef.current.value;
+    if (
+      nombre.valido === "true" &&
+      apellido.valido === "true" &&
+      fechan.valido === "true" &&
+      genero.valido === "true" &&
+      correo.valido === "true" &&
+      telefono.valido === "true" 
+
+
+    )
+
+     {
+      //Captura los datos de las cajas de texto
+      const nom = nombre.campo;
+      const apell = apellido.campo;
+      const fen = fechan.campo;
+      const gen = genero.campo;
+      const dir = direccion.campo;
+      const corr = correo.campo;
+      const cel = telefono.campo;
+      const token = localStorage.getItem("token");
+      fetch(`http://localhost:9000/api/users/${doc}`, {
+        headers: {
+          "content-type": "application/json",
+          "authorization": `Bearer ${token}`
+      },
+        method: "DELETE",
+        body: JSON.stringify({
+          nom,
+          apell,
+          corr,
+          cel,
+          dir,
+          fen,
+          gen,
+
+        }),
+      })
+        .then((res) => res.json()) // Obtener los datos
+        .then((res) => {
+         // Mostrar mensaje error :(
+
+      //Crea un objeto JSON, con los datos capturados
+      // const usui = { nom, apell,fen, gen, doc, dir,corr, cel, cla};
+      //Obtiene los usuarios Externos guardados en Local Storage
+      //listadoUsuarioi = JSON.parse(localStorage.getItem("listaUsuariosi")) || [];
+      //Se adiciona el nuevo usuarios Externo al array
+      //listadoUsuarioi.push(usui);
+      //Se guarda en local storage
+      //localStorage.setItem("listaUsuariosi", JSON.stringify(listadoUsuarioi));
+      // Borrar los campos
+      cambiarFormularioValido(true);
+      cambiarNombre({ campo: "", valido: null });
+      cambiarApellido({ campo: "", valido: null });
+      cambiarCorreo({ campo: "", valido: null });
+      cambiarTelefono({ campo: "", valido: null });
+      cambiarDireccion({ campo: "", valido: null });
+      cambiarFechan({ campo: "", valido: null });
+      cambiarGenero({ campo: "", valido: null });
+    
+        })
+
+      // ...
+    } else {
+      cambiarFormularioValido(false);
+    }
+  }
+
 
 
 
@@ -216,6 +286,9 @@ export const BuscarUsuarioInterno = () => {
                   <p></p>
                   <Boton type="button" onClick={update}>
                     Editar
+                  </Boton>
+                  <Boton type="button" onClick={borrar}>
+                    Eliminar
                   </Boton>
                   {"\n"}
                   <p></p> {formularioValido === true && (
