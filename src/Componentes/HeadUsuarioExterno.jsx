@@ -71,10 +71,10 @@ export const HeadUsuarioExterno = () => {
                 </Link>
               </li>
               <li className="active">
-                <Link to="/"> VER CITAS </Link>
+                <Link to="/registro-nino"> Registro Niño </Link>
               </li>
               <li className="active">
-                <Link to="/agendar-citas"> AGENDAR CITA </Link>
+                <Link to="/agendar-citas"> VER O AGENDAR CITA </Link>
               </li>
               <li className="active">
                 <Link to="/"> CERRAR SESIÓN </Link>

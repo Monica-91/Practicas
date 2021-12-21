@@ -19,49 +19,31 @@ export const Registro_adulto = () => {
   //formulario
   //Array de Lista de usuarios Externos
   let listadoUsuarioe;
-
-  const [nombre_n, cambiarNombre_n] = useState({ campo: "", valido: null });
-  const [apellido_n, cambiarApellido_n] = useState({ campo: "", valido: null });
-  const [documento_n, cambiarDocumento_n] = useState({
-    campo: "",
-    valido: null,
-  });
-  const [fecha_nac, cambiarFecha_nac] = useState({ campo: "", valido: null });
-  const [genero_n, cambiarGenero_n] = useState({ campo: "", valido: null });
-  const [tipo_sangre, cambiarTipo_sangre] = useState({
-    campo: "",
-    valido: null,
-  });
-
   const [nombre, cambiarNombre] = useState({ campo: "", valido: null });
   const [apellido, cambiarApellido] = useState({ campo: "", valido: null });
-  const [documento, cambiarDocumento] = useState({ campo: "", valido: null });
-  const [genero, cambiarGenero] = useState({ campo: "", valido: null });
-  const [parentezco, cambiarParentezco] = useState({ campo: "", valido: null });
-  const [direccion, cambiarDireccion] = useState({ campo: "", valido: null });
-  const [correo, cambiarCorreo] = useState({ campo: "", valido: null });
-  const [telefono, cambiarTelefono] = useState({ campo: "", valido: null });
   const [password, cambiarPassword] = useState({ campo: "", valido: null });
   const [password2, cambiarPassword2] = useState({ campo: "", valido: null });
+  const [correo, cambiarCorreo] = useState({ campo: "", valido: null });
+  const [telefono, cambiarTelefono] = useState({ campo: "", valido: null });
+  const [direccion, cambiarDireccion] = useState({ campo: "", valido: null });
+  const [fechan, cambiarFechan] = useState({ campo: "", valido: null });
+  const [genero, cambiarGenero] = useState({ campo: "", valido: null });
+  const [documento, cambiarDocumento] = useState({ campo: "", valido: null });
+  const [rolU, cambiarRolU] = useState({ campo: "", valido: null });
+
   const [terminos, cambiarTerminos] = useState(false);
   const [formularioValido, cambiarFormularioValido] = useState(null);
 
   const expresiones = {
     apellido: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras, numeros, guion y guion_bajo
-    apellido_n: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras, numeros, guion y guion_bajo
     nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-    nombre_n: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos..
-    parentezco: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+    fechan: /^\d{1,2}\/\d{1,2}\/\d{2,4}$/, // Letras y espacios, pueden llevar acentos.
     genero: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-    genero_n: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-    fecha_nac: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras, numeros, guion y guion_bajo
-    tipo_sangre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras, numeros, guion y guion_bajo
     password: /^.{4,12}$/, // 4 a 12 digitos.
     documento: /^.{4,12}$/, // 4 a 12 digitos.
-    documento_n: /^.{4,12}$/, // 4 a 12 digitos.
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-    direccion: /^[a-zA-ZÀ-ÿ\s0-9_.+-]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-    telefono: /^[a-zA-Z0-9_.+-]+$/,
+    direccion: /^[a-zA-Z0-9_.+-]+$/,
+    telefono: /^\d{7,14}$/, // 7 a 14 numeros.
   };
 
   const validarPassword2 = () => {
@@ -86,86 +68,71 @@ export const Registro_adulto = () => {
     e.preventDefault();
 
     if (
-      nombre_n.valido === "true" &&
-      apellido_n.valido === "true" &&
-      documento_n.valido === "true" &&
-      fecha_nac.valido === "true" &&
-      genero_n.valido === "true" &&
-      tipo_sangre.valido === "true" &&
       nombre.valido === "true" &&
       apellido.valido === "true" &&
-      documento.valido === "true" &&
+      fechan.valido === "true" &&
       genero.valido === "true" &&
-      parentezco.valido === "true" &&
-      direccion.valido === "true" &&
+      documento.valido === "true" &&
       correo.valido === "true" &&
       telefono.valido === "true" &&
       password.valido === "true" &&
       terminos
     ) {
       //Captura los datos de las cajas de texto
-
-      const nom_n = nombre_n.campo;
-      const apell_n = apellido_n.campo;
-      const doc_n = documento.campo;
-      const fec_nac = fecha_nac.campo;
-      const gen_n = genero_n.campo;
-      const sang = tipo_sangre.campo;
-
       const nom = nombre.campo;
       const apell = apellido.campo;
-      const doc = documento.campo;
+      const fen = fechan.campo;
       const gen = genero.campo;
-      const part = parentezco.campo;
+      const doc = documento.campo;
       const dir = direccion.campo;
       const corr = correo.campo;
       const cel = telefono.campo;
       const cla = password.campo;
+      const rol = rolU.campo;
+
+      fetch(`http://localhost:9000/api/usersEX/`, {
+        headers: {
+          "content-type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          nom,
+          apell,
+          cla,
+          corr,
+          cel,
+          dir,
+          fen,
+          gen,
+          doc,
+          rol,
+        }),
+      })
+        .then((data) => data.json()) // Obtener los datos
+        .then((data) => alert(data.msg)) // Mostrar mensaje OK    :)
+        .catch((error) => alert(error)); // Mostrar mensaje error :(
 
       //Crea un objeto JSON, con los datos capturados
-      const usue = {
-        nom_n,
-        apell_n,
-        doc_n,
-        fec_nac,
-        gen_n,
-        sang,
-        nom,
-        apell,
-        doc,
-        gen,
-        part,
-        dir,
-        corr,
-        cel,
-        cla,
-      };
+      // const usui = { nom, apell,fen, gen, doc, dir,corr, cel, cla};
       //Obtiene los usuarios Externos guardados en Local Storage
-      listadoUsuarioe =
-        JSON.parse(localStorage.getItem("listaUsuariose")) || [];
+      //listadoUsuarioi = JSON.parse(localStorage.getItem("listaUsuariosi")) || [];
       //Se adiciona el nuevo usuarios Externo al array
-      listadoUsuarioe.push(usue);
+      //listadoUsuarioi.push(usui);
       //Se guarda en local storage
-      localStorage.setItem("listaUsuariose", JSON.stringify(listadoUsuarioe));
+      //localStorage.setItem("listaUsuariosi", JSON.stringify(listadoUsuarioi));
       // Borrar los campos
       cambiarFormularioValido(true);
-      cambiarNombre_n({ campo: "", valido: null });
-      cambiarApellido_n({ campo: "", valido: null });
-      cambiarDocumento_n({ campo: "", valido: null });
-      cambiarFecha_nac({ campo: "", valido: null });
-      cambiarGenero_n({ campo: "", valido: null });
-      cambiarTipo_sangre({ campo: "", valido: null });
-
       cambiarNombre({ campo: "", valido: null });
       cambiarApellido({ campo: "", valido: null });
-      cambiarDocumento({ campo: "", valido: null });
-      cambiarGenero({ campo: "", valido: null });
-      cambiarParentezco({ campo: "", valido: null });
-      cambiarDireccion({ campo: "", valido: null });
-      cambiarCorreo({ campo: "", valido: null });
-      cambiarTelefono({ campo: "", valido: null });
       cambiarPassword({ campo: "", valido: null });
       cambiarPassword2({ campo: "", valido: null });
+      cambiarCorreo({ campo: "", valido: null });
+      cambiarTelefono({ campo: "", valido: null });
+      cambiarDireccion({ campo: "", valido: null });
+      cambiarFechan({ campo: "", valido: null });
+      cambiarGenero({ campo: "", valido: null });
+      cambiarDocumento({ campo: "", valido: null });
+      cambiarRolU({ campo: "", valido: null });
 
       // ...
     } else {
@@ -248,84 +215,19 @@ export const Registro_adulto = () => {
           {/* .nav-collapse --> */}
         </div>
       </div>
+
       <div id="headerwrap_r_a">
         <div className="container">
           <div className="row centered">
             <p>
               <h1>
-                <b>Datos del Niño</b>
+                <b>Registro</b>
               </h1>
             </p>
 
+            {/*  <!-- Formulario --> */}
             <main>
               <Formulario action="" onSubmit={onSubmit}>
-                <Input
-                  estado={nombre_n}
-                  cambiarEstado={cambiarNombre_n}
-                  tipo="text"
-                  label="Nombre"
-                  placeholder=""
-                  name="nombre_n"
-                  leyendaError="El nombre solo puede contener letras y espacios."
-                  expresionRegular={expresiones.nombre_n}
-                />
-                <Input
-                  estado={apellido_n}
-                  cambiarEstado={cambiarApellido_n}
-                  tipo="text"
-                  label="Apellido"
-                  placeholder=""
-                  name="apellido_n"
-                  leyendaError="El nombre solo puede contener letras y espacios."
-                  expresionRegular={expresiones.apellido_n}
-                />
-
-                <Input
-                  estado={documento_n}
-                  cambiarEstado={cambiarDocumento_n}
-                  tipo="text"
-                  label="Documento"
-                  name="documento_n"
-                  leyendaError="el documento tiene que ser de 4 a 12 dígitos."
-                  expresionRegular={expresiones.documento_n}
-                />
-
-                <Input
-                  estado={fecha_nac}
-                  cambiarEstado={cambiarFecha_nac}
-                  tipo="text"
-                  label="Fecha Nacimiento"
-                  name="fecha_nac"
-                  leyendaError="seleccione una fecha del calendario."
-                  expresionRegular={expresiones.fecha_nac}
-                />
-
-                <Input
-                  estado={genero_n}
-                  cambiarEstado={cambiarGenero_n}
-                  tipo="text"
-                  label="Genero"
-                  placeholder=""
-                  name="genero_n"
-                  leyendaError="El genero solo puede contener letras y espacios."
-                  expresionRegular={expresiones.genero_n}
-                />
-
-                <Input
-                  estado={tipo_sangre}
-                  cambiarEstado={cambiarTipo_sangre}
-                  tipo="text"
-                  label="Tipo Sangre"
-                  placeholder=""
-                  name="tipo_sangre"
-                  leyendaError="El tipo de sangre solo puede contener letras y espacios."
-                  expresionRegular={expresiones.tipo_sangre}
-                />
-
-                <ContenedorTerminos>
-                  <Titulo>Datos del Adulto</Titulo>
-                </ContenedorTerminos>
-
                 <Input
                   estado={nombre}
                   cambiarEstado={cambiarNombre}
@@ -346,50 +248,24 @@ export const Registro_adulto = () => {
                   leyendaError="El nombre solo puede contener letras y espacios."
                   expresionRegular={expresiones.apellido}
                 />
-
                 <Input
-                  estado={documento}
-                  cambiarEstado={cambiarDocumento}
-                  tipo="text"
-                  label="Documento"
-                  name="documento"
-                  leyendaError="el documento tiene que ser de 4 a 12 dígitos."
-                  expresionRegular={expresiones.documento}
+                  estado={password}
+                  cambiarEstado={cambiarPassword}
+                  tipo="password"
+                  label="Contraseña"
+                  name="password1"
+                  leyendaError="La contraseña tiene que ser de 4 a 12 dígitos."
+                  expresionRegular={expresiones.password}
                 />
-
                 <Input
-                  estado={genero}
-                  cambiarEstado={cambiarGenero}
-                  tipo="text"
-                  label="Genero"
-                  placeholder=""
-                  name="genero"
-                  leyendaError="El genero solo puede contener letras y espacios."
-                  expresionRegular={expresiones.genero}
+                  estado={password2}
+                  cambiarEstado={cambiarPassword2}
+                  tipo="password"
+                  label="Repetir Contraseña"
+                  name="password2"
+                  leyendaError="Ambas contraseñas deben ser iguales."
+                  funcion={validarPassword2}
                 />
-
-                <Input
-                  estado={parentezco}
-                  cambiarEstado={cambiarParentezco}
-                  tipo="text"
-                  label="Parentezco"
-                  placeholder=""
-                  name="parentezco"
-                  leyendaError="El parentezco solo puede contener letras y espacios."
-                  expresionRegular={expresiones.parentezco}
-                />
-
-                <Input
-                  estado={direccion}
-                  cambiarEstado={cambiarDireccion}
-                  tipo="text"
-                  label="Dirección"
-                  placeholder=""
-                  name="direccion"
-                  leyendaError="la direccion solo puede contener letras y espacios."
-                  expresionRegular={expresiones.direccion}
-                />
-
                 <Input
                   estado={correo}
                   cambiarEstado={cambiarCorreo}
@@ -410,25 +286,49 @@ export const Registro_adulto = () => {
                   leyendaError="El telefono solo puede contener numeros y el maximo son 14 dígitos."
                   expresionRegular={expresiones.telefono}
                 />
-
                 <Input
-                  estado={password}
-                  cambiarEstado={cambiarPassword}
-                  tipo="password"
-                  label="Contraseña"
-                  name="password1"
-                  leyendaError="La contraseña tiene que ser de 4 a 12 dígitos."
-                  expresionRegular={expresiones.password}
+                  estado={direccion}
+                  cambiarEstado={cambiarDireccion}
+                  tipo="text"
+                  label="Direccion"
+                  placeholder=""
+                  name="direccion"
                 />
-
                 <Input
-                  estado={password2}
-                  cambiarEstado={cambiarPassword2}
-                  tipo="password"
-                  label="Repetir Contraseña"
-                  name="password2"
-                  leyendaError="Ambas contraseñas deben ser iguales."
-                  funcion={validarPassword2}
+                  estado={fechan}
+                  cambiarEstado={cambiarFechan}
+                  tipo="text"
+                  label="Fecha de nacimiento"
+                  placeholder=""
+                  name="fechan"
+                  leyendaError="El valor debe corresponder a una fecha."
+                  expresionRegular={expresiones.fechan}
+                />
+                <Input
+                  estado={genero}
+                  cambiarEstado={cambiarGenero}
+                  tipo="text"
+                  label="Genero"
+                  placeholder=""
+                  name="genero"
+                  leyendaError="El genero solo puede contener letras y espacios."
+                  expresionRegular={expresiones.genero}
+                />
+                <Input
+                  estado={documento}
+                  cambiarEstado={cambiarDocumento}
+                  tipo="text"
+                  label="Documento"
+                  name="documento"
+                  leyendaError="el documento tiene que ser de 4 a 12 dígitos."
+                  expresionRegular={expresiones.documento}
+                />
+                <Input
+                  estado={rolU}
+                  cambiarEstado={cambiarRolU}
+                  tipo="text"
+                  label="rol"
+                  name="rol"
                 />
 
                 <ContenedorTerminos>
@@ -453,8 +353,9 @@ export const Registro_adulto = () => {
                   </MensajeError>
                 )}
                 <ContenedorBotonCentrado>
-                  <Boton type="submit">Enviar</Boton>
-                  <Link to="/lista">Listar</Link>
+                  <Boton type="submit">Guardar</Boton>
+                  <p></p>
+
                   {formularioValido === true && (
                     <MensajeExito>
                       Formulario enviado exitosamente!

@@ -80,7 +80,7 @@ router.post('/users/login', async function (req, res) {
         estado: 'ok',
         msg: 'Logueado :)',
         token,
-        url: '/externor',
+        url: '/externo',
       });
     } else {
       return res
@@ -95,9 +95,24 @@ router.post('/users/login', async function (req, res) {
   }
 });
 /**
- * Create User
+ * Create User Administrador interno
  */
 router.post('/users', userSaveGuard, (req, res) => {
+  const users = userModel(req.body);
+  users.save(function (error) {
+    if (error) {
+      return res
+        .status(500)
+        .send({ estado: 'error', msg: 'ERROR: Usuario NO guardado' });
+    }
+    return res.status(200).send({ estado: 'ok', msg: 'Usuario Guardado' });
+  });
+});
+
+/**
+ * Create User Externo
+ */
+router.post('/usersEx', (req, res) => {
   const users = userModel(req.body);
   users.save(function (error) {
     if (error) {

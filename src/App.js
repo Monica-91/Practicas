@@ -52,7 +52,6 @@ function App() {
           <Route path="/agendar-citas" element={<AgendarCitas />} />
 
           {/* Rutas de Vista Interno */}
-          <Route path="/externo" element={<VistaExterno />} />
           <Route path="/interno" element={<VistaInterno />} />
           <Route path="/inventario_vacuna" element={<Inventario_vacuna />} />
           <Route path="/modificar_stock" element={<ModificarStock />} />
@@ -61,10 +60,18 @@ function App() {
 
           {/* Rutas vista Administrador */}
           <Route path="/administrador" element={<VistaAdministrador />} />
-          <Route path="/crearUsuarioInterno" element={<CrearUsuarioInterno />} />
-          <Route path="/buscarUsuarioInterno" element={< BuscarUsuarioInterno />}/>
-          <Route path="/inventario_vacunaAdministrador" element={< Inventario_vacunaAdministrador />}/>
-
+          <Route
+            path="/crearUsuarioInterno"
+            element={<CrearUsuarioInterno />}
+          />
+          <Route
+            path="/buscarUsuarioInterno"
+            element={<BuscarUsuarioInterno />}
+          />
+          <Route
+            path="/inventario_vacunaAdministrador"
+            element={<Inventario_vacunaAdministrador />}
+          />
 
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
