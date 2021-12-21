@@ -15,6 +15,14 @@ const Formulario = styled.form`
     grid-template-columns: 1fr;
   }
 `;
+const FormularioVacuna = styled.form`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
+`;
 
 const Label = styled.label`
   display: block;
@@ -165,6 +173,7 @@ const Titulo = styled.p`
 
 export {
   Formulario,
+  FormularioVacuna,
   Label,
   GrupoInput,
   Input,

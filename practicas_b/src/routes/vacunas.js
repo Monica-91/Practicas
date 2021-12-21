@@ -20,7 +20,7 @@ vacunarouter.post('/vacunas', vacunaSaveGuard, (req, res) => {
     if (error) {
       return res
         .status(500)
-        .send({ estado: 'error', msg: 'ERROR: Usuario NO guardado' });
+        .send({ estado: 'error', msg: 'ERROR: Vacuna NO guardada' });
     }
     return res.status(200).send({ estado: 'ok', msg: 'vacuna Guardada' });
   });

@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 //Importamos el enrutador para tener acceso a todas las rutas definidas en el archivo de user.js
 const userRoutes = require('./routes/users')
+const vacunaRoutes=require('./routes/vacunas')
 
 //Ejecutamos express, lo cuál retornará el objeto de la aplicación
 const app = express();
@@ -24,6 +25,7 @@ const PORT = process.env.PORT || 9000;
 app.use(cors())
 app.use(express.json())
 app.use('/api',userRoutes);
+app.use('/api',vacunaRoutes);
 
 /**
  * Conección a la base de datos
