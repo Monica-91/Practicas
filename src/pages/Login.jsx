@@ -48,7 +48,9 @@ export const Login = () => {
         .then(res => {
           if (res.estado === "ok") {
               { localStorage.setItem("token",res.token);
-                  window.location.href = res.url }
+              localStorage.setItem("id_padre",res.id_padre);
+                  window.location.href = res.url
+                }
           } else {
               setError(true);
               setMsgError(res.msg);

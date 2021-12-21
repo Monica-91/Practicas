@@ -49,6 +49,7 @@ router.post('/users/login', async function (req, res) {
         msg: 'Logueado :)',
         token,
         url: '/administrador',
+        id_padre:user.corr,
       });
     } else if (passOK && passI) {
       //Genera el token
