@@ -19,6 +19,7 @@ import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import "./interno.css";
 
 export const Inventario_vacuna = () => {
+  //aqui empieza delete update create and read
   var usuarioRef = useRef();
   let listadoUsuarioi;
 
@@ -99,6 +100,7 @@ export const Inventario_vacuna = () => {
       cambiarFormularioValido(false);
     }
   };
+
   function consultar(e) {
     e.preventDefault();
     const cod = usuarioRef.current.value;
@@ -118,6 +120,112 @@ export const Inventario_vacuna = () => {
         }
       });
   }
+  function update() {
+    const cod = usuarioRef.current.value;
+    if (
+      nombre.valido === "true" &&
+      codigo.valido === "true" &&
+      cantidadMinima.valido === "true" &&
+      cantidad.valido === "true"
+    ) {
+      //Captura los datos de las cajas de texto
+      const nom = nombre.campo;
+      const cod = codigo.campo;
+      const cantmin = cantidadMinima.campo;
+      const cant = cantidad.campo;
+      const token = localStorage.getItem("token");
+      fetch(`http://localhost:9000/api/vacunas/${cod}`, {
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+        method: "PUT",
+        body: JSON.stringify({
+          nom,
+          cod,
+          cantmin,
+          cant,
+        }),
+      })
+        .then((res) => res.json()) // Obtener los datos
+        .then((res) => {
+          // Mostrar mensaje error :(
+
+          //Crea un objeto JSON, con los datos capturados
+          // const usui = { nom, apell,fen, gen, doc, dir,corr, cel, cla};
+          //Obtiene los usuarios Externos guardados en Local Storage
+          //listadoUsuarioi = JSON.parse(localStorage.getItem("listaUsuariosi")) || [];
+          //Se adiciona el nuevo usuarios Externo al array
+          //listadoUsuarioi.push(usui);
+          //Se guarda en local storage
+          //localStorage.setItem("listaUsuariosi", JSON.stringify(listadoUsuarioi));
+          // Borrar los campos
+          cambiarFormularioValido(true);
+          cambiarNombre({ campo: "", valido: "null" });
+          cambiarCodigo({ campo: "", valido: "null" });
+          cambiarCantidadMinima({ campo: "", valido: "null" });
+          cambiarCantidad({ campo: "", valido: "null" });
+        });
+
+      // ...
+    } else {
+      cambiarFormularioValido(false);
+    }
+  }
+
+  function borrar() {
+    const cod = usuarioRef.current.value;
+    if (
+      nombre.valido === "true" &&
+      codigo.valido === "true" &&
+      cantidadMinima.valido === "true" &&
+      cantidad.valido === "true"
+    ) {
+      //Captura los datos de las cajas de texto
+      const nom = nombre.campo;
+      const cod = codigo.campo;
+      const cantmin = cantidadMinima.campo;
+      const cant = cantidad.campo;
+      const token = localStorage.getItem("token");
+      fetch(`http://localhost:9000/api/vacunas/${cod}`, {
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+        method: "DELETE",
+        body: JSON.stringify({
+          nom,
+          cod,
+          cantmin,
+          cant,
+        }),
+      })
+        .then((res) => res.json()) // Obtener los datos
+        .then((res) => {
+          // Mostrar mensaje error :(
+
+          //Crea un objeto JSON, con los datos capturados
+          // const usui = { nom, apell,fen, gen, doc, dir,corr, cel, cla};
+          //Obtiene los usuarios Externos guardados en Local Storage
+          //listadoUsuarioi = JSON.parse(localStorage.getItem("listaUsuariosi")) || [];
+          //Se adiciona el nuevo usuarios Externo al array
+          //listadoUsuarioi.push(usui);
+          //Se guarda en local storage
+          //localStorage.setItem("listaUsuariosi", JSON.stringify(listadoUsuarioi));
+          // Borrar los campos
+          cambiarFormularioValido(true);
+
+          cambiarNombre({ campo: "", valido: "null" });
+          cambiarCodigo({ campo: "", valido: "null" });
+          cambiarCantidadMinima({ campo: "", valido: "null" });
+          cambiarCantidad({ campo: "", valido: "null" });
+        });
+
+      // ...
+    } else {
+      cambiarFormularioValido(false);
+    }
+  }
 
   return (
     <Fragment>
@@ -135,90 +243,7 @@ export const Inventario_vacuna = () => {
               <br />
               <br />
               <br />
-              <table>
-                <thead>
-                  <tr>
-                    <th>Biologico</th>
-                    <th>Cantidad Minima</th>
-                    <th>Cantidad</th>
-                  </tr>
-                </thead>
-                <tr>
-                  <td>Epatitis B</td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>Antipolio Intramuscular</td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>Antipolio Oral</td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>
-                    Pentabalente (Diteferia, Tetanos, Tos Ferina, Heamophilus
-                    Influensae tipo B, Hepatitis B)
-                  </td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>Rotavirus</td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>Anti Neumococo</td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>Tripe Viral (Ssarapion, Rubeola y paperas)</td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>Fiebre Amarilla</td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>Hepatitis A</td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>Varicela</td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>DTP (Difteria, Tetanos, Tosferina)</td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>
-                    Anti Influenza (Se aplica desde los 6 meses hasta los 23)
-                  </td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              </table>
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <button type="button">
-                <Link to="/modificar_stock">Modificar</Link>
-              </button>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <button>Ingresar</button>
+
               <main>
                 <FormularioVacuna action="" onSubmit={onSubmit}>
                   <Input
@@ -287,20 +312,19 @@ export const Inventario_vacuna = () => {
                     <Boton type="button">Buscar</Boton>
                     {"\n"}
                     <p></p>
-                    <Boton type="button" onClick="editar()">
+                    <Boton type="button" onClick={update}>
                       Editar
                     </Boton>
                     {"\n"}
                     <p></p>
-                    <Boton type="button" onClick="borrar()">
+                    <Boton type="button" onClick={borrar}>
                       Borrrar
                     </Boton>
                     {"\n"}
+                    <Link to="/vacunaList">Listar vacunas</Link>
                     <p></p>
                     {formularioValido === true && (
-                      <MensajeExito>
-                        Formulario enviado exitosamente!
-                      </MensajeExito>
+                      <MensajeExito>Esta seguro de esta Acción!</MensajeExito>
                     )}
                   </ContenedorBotonCentrado>
                 </FormularioVacuna>
