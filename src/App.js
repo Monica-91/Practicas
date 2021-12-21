@@ -37,6 +37,7 @@ import { BuscarUsuarioInterno } from "./pages/Vista_Administrador/BuscarUsuarioI
 import { Inventario_vacunaAdministrador } from "./pages/Vista_Administrador/Inventario_vacunaAdministrador";
 import { UsuariosiListInterno } from "./pages/Vistas_interno/UsuariosiListInterno";
 import { VacunaList } from "./pages/Vistas_interno/VacunaList";
+import { VacunaListAdmin } from "./pages/Vista_Administrador/VacunaListAdmin";
 
 function App() {
   return (
@@ -76,6 +77,7 @@ function App() {
             path="/inventario_vacunaAdministrador"
             element={<Inventario_vacunaAdministrador />}
           />
+          <Route path="/vacunaListAdmin" element={<VacunaListAdmin />} />
 
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
