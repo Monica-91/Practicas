@@ -36,6 +36,7 @@ import { VistaAdministrador } from "./pages/Vista_Administrador/VistaAdministrad
 import { BuscarUsuarioInterno } from "./pages/Vista_Administrador/BuscarUsuarioInterno";
 import { Inventario_vacunaAdministrador } from "./pages/Vista_Administrador/Inventario_vacunaAdministrador";
 import { UsuariosiListInterno } from "./pages/Vistas_interno/UsuariosiListInterno";
+import { VacunaList } from "./pages/Vistas_interno/VacunaList";
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
           {/* Rutas de Vista Interno */}
           <Route path="/interno" element={<VistaInterno />} />
           <Route path="/inventario_vacuna" element={<Inventario_vacuna />} />
+          <Route path="/vacunaList" element={<VacunaList />} />
           <Route path="/modificar_stock" element={<ModificarStock />} />
           <Route path="/buscarUsuario" element={<BuscarUsuario />} />
           <Route path="/EsquemaNino" element={<EsquemaNino />} />

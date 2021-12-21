@@ -6,10 +6,7 @@ const { vacunaModel } = require('../models/vacunaModels');
 // para la creación de un enrutador
 const vacunarouter = express.Router();
 
-
 const { vacunaSaveGuard } = require('../guards/vacunaSaveGuard');
-
-
 
 /**
  * Create vacuna
@@ -25,8 +22,6 @@ vacunarouter.post('/vacunas', vacunaSaveGuard, (req, res) => {
     return res.status(200).send({ estado: 'ok', msg: 'vacuna Guardada' });
   });
 });
-
-
 
 /**
  * Get all vacunas
@@ -54,7 +49,7 @@ vacunarouter.get('/vacunas/:doc', (req, res) => {
  */
 vacunarouter.put('/vacunas/:cod', (req, res) => {
   const { cod } = req.params;
-  const {  nom, cantmin, cant } = req.body;
+  const { nom, cantmin, cant } = req.body;
   vacunaModel
     .updateOne({ cod }, { $set: { nom, cantmin, cant } })
     .then((data) => res.json(data))
@@ -71,7 +66,5 @@ vacunarouter.delete('/vacunas/:cod', (req, res) => {
     .then((data) => res.json(data))
     .catch((error) => console.error({ message: error }));
 });
-
-
 
 module.exports = vacunarouter;
