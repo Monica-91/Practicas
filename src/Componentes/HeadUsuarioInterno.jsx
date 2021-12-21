@@ -28,7 +28,7 @@ export const HeadUsuarioInterno = () => {
               ></img>
             </li>
             <li className="pull-rigth">
-              <img src="./img/fondo.png" alt="" width="700" height="50"></img>
+              <img src="./img/fondo.png" alt="" width="1300" height="50"></img>
             </li>
             <li className="pull-rigth">
               <img src="./img/fondo.png" alt="" width="50" height="50"></img>
