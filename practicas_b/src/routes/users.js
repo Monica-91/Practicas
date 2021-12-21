@@ -162,9 +162,9 @@ router.put('/users/:doc', (req, res) => {
  */
 router.delete('/users/:doc', (req, res) => {
   const { doc } = req.params;
-  const { nom, apell, corr, cel, dir, fen, gen } = req.body;
+  
   userModel
-    .remove({ doc }, { $set: { nom, apell, corr, cel, dir, fen, gen } })
+    .remove({ doc })
     .then((data) => res.json(data))
     .catch((error) => console.error({ message: error }));
 });

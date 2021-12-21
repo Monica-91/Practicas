@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Boton } from "../../elementos/Formularios";
 
-export function UsuariosiList() {
+export function UsuariosiListInterno() {
     const [listado, setListado] = useState([]);
 
     useEffect(() => {
@@ -48,7 +48,7 @@ export function UsuariosiList() {
           </tbody>
         </table>
         <Boton>
-          <Link to="/buscarUsuarioInterno">Regresar</Link>
+          <Link to="/buscarUsuario">Regresar</Link>
         </Boton>
       </>
     );

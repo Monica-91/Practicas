@@ -298,7 +298,7 @@ export const BuscarUsuario = () => {
                   </Boton>
                   {"\n"}
                   <p></p>
-                  <Link to="/listai">
+                  <Link to="/listaInterno">
                     <Boton>Listar</Boton>{" "}
                   </Link>
                   {formularioValido === true && (

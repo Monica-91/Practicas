@@ -14,7 +14,7 @@ apell: {
     type: String,
     required: true
 },
-nac: {
+fen: {
     type: String,
     required: true
 },
@@ -26,6 +26,7 @@ doc: {
     type: Number,
     required: true
 },
+
 
 });
 
