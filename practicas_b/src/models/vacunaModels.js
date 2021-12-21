@@ -11,6 +11,11 @@ nom: {
     required: true
 },
 
+cod: {
+    type: Number,
+    required: true
+},
+
 cantmin: {
     type: Number,
     required: true
