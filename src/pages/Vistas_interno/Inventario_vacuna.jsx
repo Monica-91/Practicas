@@ -20,8 +20,8 @@ export const Inventario_vacuna = () => {
                 <thead>
                   <tr>
                     <th>Biologico</th>
-                    <th>Se tiene</th>
-                    <th>Llega</th>
+                    <th>Cantidad Minima</th>
+                    <th>Cantidad Actual</th>
                   </tr>
                 </thead>
                 <tr>
