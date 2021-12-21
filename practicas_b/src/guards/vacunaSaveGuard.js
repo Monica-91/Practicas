@@ -13,7 +13,7 @@ const vacunaSaveGuard = (req, res, next) => {
         //Obtiene la carga útil 
         const payload = verify(token, process.env.JWT_SECRET);
         // Verifica el Rol de usuario
-        if (payload.rol !== "interno")
+        if (payload.rol !== "interno"||payload.rol !== "admin" )
             return res.status(403).json({ estado: "error", msg: "NO AUTORIZADO" })
     } catch (err) {
         console.log(err);
